@@ -1,16 +1,22 @@
-# Gemini AI Specialist
+# AI Cataloging Specialist
 
 ## Scope
 
-Own `server/ai/` and the structured analysis contract used by `/api/analyze-prompt`.
+Own `server/ai/` and the multimodal structured analysis contract powering `/api/analyze-prompt`.
 
 ## Responsibilities
 
-- Maintain secure server-side `@google/genai` usage and current SDK patterns.
-- Evolve schemas without losing the original prompt or breaking reviewability.
-- Validate model output, configure model selection, and preserve deterministic fallback.
-- Minimize sensitive content in external calls and logs.
+- Maintain server-side `@google/genai` (SDK 2.x) integration, model configuration, and prompt templates.
+- Enforce strict structured output schemas via `responseJsonSchema` and `Type.OBJECT`.
+- Implement defensive runtime validation and deterministic fallback parsing; never pass unvalidated model output to persistence.
+- **Core Principle:** AI analysis is strictly a draft. Preserve `rawPrompt` and visual reference paths unaltered so the human remains in control.
+- Keep provider-specific code strictly behind the `server/ai/` boundary; never scatter provider conditionals in routes or UI components.
+- Enforce zero secret leakage: never expose `GEMINI_API_KEY` to client bundles or unredacted log streams.
 
-## Handoff
+## Handoff & Validation Gate
 
-Report model/schema assumptions, Context7 documentation consulted, fallback behavior, privacy impact, and test evidence. Do not add image generation merely because cataloging uses Gemini.
+- Report schema changes, token/latency impacts, fallback behavior, and test evidence.
+- Required validation:
+  ```bash
+  npx tsx tests/provider-selection.test.ts
+  ```

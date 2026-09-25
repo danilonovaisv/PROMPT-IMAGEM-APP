@@ -1,16 +1,20 @@
 ---
-description: Run a repository quality gate without silently changing files.
+description: Run repository quality gate, typecheck, contract consistency, and security audits.
 ---
 
 # /quality
 
-Run a repository quality gate without silently changing files.
+Run repository quality gate without silently changing files.
 
-1. Inspect the working tree and preserve unrelated changes.
-2. Run `pnpm exec tsc --noEmit`.
-3. Run configured lint/tests only when they exist; note that the current `lint` script is type-checking, not ESLint.
-4. Validate build inputs, API contract consistency, accidental secrets, runtime data, lockfile drift, and unsupported roadmap claims.
-5. Review changed uploads, AI, persistence, and auth surfaces for focused security risk.
-6. Summarize actionable findings by severity and identify checks unavailable in the repository.
-
-Do not auto-fix, update dependencies, or clean generated files unless explicitly requested.
+1. **Working Tree Inspection:** Inspect git status and preserve unrelated changes.
+2. **Typecheck Gate:** Run `pnpm exec tsc --noEmit` (0 errors required).
+3. **Automated Behavior Verification:** Run targeted test suites or full `pnpm test`.
+4. **Contract & Storage Integrity:**
+   - Verify parity between `FilePromptRepository` and `FirestorePromptRepository`.
+   - Ensure fail-closed checks prevent ephemeral storage fallbacks in Cloud Run.
+   - Verify frontend API calls strictly use `src/services/api.ts`.
+5. **Security & Secrets Audit:**
+   - Confirm zero exposure of `GEMINI_API_KEY` or service credentials in client bundles.
+   - Review Multer upload endpoints for size limits and path containment.
+   - Verify `firestore.rules` enforces admin-only backend access.
+6. **Reporting:** Summarize actionable findings ranked by severity.

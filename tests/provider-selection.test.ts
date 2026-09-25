@@ -105,10 +105,12 @@ async function runProviderSelectionTests() {
     // --- TEST 5: Fail-closed on Firestore initialization error (NO SILENT FALLBACK) ---
     console.log('\n▶ [Test 5] PERSISTENCE_PROVIDER=firestore fails closed on error (no silent fallback)');
     process.env.PERSISTENCE_PROVIDER = 'firestore';
-    // Set invalid / unreachable project or config to force failure
-    process.env.GOOGLE_CLOUD_PROJECT = 'non-existent-test-project-xyz';
-    process.env.FIRESTORE_DATABASE_ID = 'invalid-db-id-xyz';
     _resetRepositoryInstanceForTesting();
+
+    const originalFirestoreInit = FirestorePromptRepository.prototype.init;
+    FirestorePromptRepository.prototype.init = async () => {
+      throw new Error('Connection refused to Firestore endpoint (simulated)');
+    };
 
     let firestoreFailedClosed = false;
     try {
@@ -118,6 +120,8 @@ async function runProviderSelectionTests() {
       assert(err.message.includes('Fatal: Failed to initialize Firestore repository'), 'Must throw fatal error on failure');
       assert(err.message.includes('Silent fallback to ephemeral filesystem is strictly prohibited'), 'Must mention prohibition of silent fallback');
       console.log(`✓ Confirmed fail-closed behavior: caught fatal error: ${err.message}`);
+    } finally {
+      FirestorePromptRepository.prototype.init = originalFirestoreInit;
     }
     assert.strictEqual(firestoreFailedClosed, true, 'Must fail closed when Firestore initialization fails; no silent fallback to FilePromptRepository allowed');
 
@@ -127,6 +131,10 @@ async function runProviderSelectionTests() {
     process.env.NODE_ENV = 'production';
     _resetRepositoryInstanceForTesting();
 
+    FirestorePromptRepository.prototype.init = async () => {
+      throw new Error('Firestore not reachable in production (simulated)');
+    };
+
     let prodDefaultFailedClosed = false;
     try {
       await getPromptRepository();
@@ -134,6 +142,8 @@ async function runProviderSelectionTests() {
       prodDefaultFailedClosed = true;
       assert(err.message.includes('Fatal: Failed to initialize Firestore repository'), 'Must attempt Firestore and fail closed if unconfigured in production');
       console.log(`✓ Confirmed: production defaults to firestore and rejects fallback: ${err.message}`);
+    } finally {
+      FirestorePromptRepository.prototype.init = originalFirestoreInit;
     }
     assert.strictEqual(prodDefaultFailedClosed, true, 'Production without PERSISTENCE_PROVIDER must attempt Firestore');
 

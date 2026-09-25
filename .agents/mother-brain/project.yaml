@@ -2,14 +2,14 @@ schema_version: 1
 
 mother_brain:
   root: /Users/danilonovais/OBSIDIAN
-  project_id: dan-images-prompts-2
+  project_id: prompt-imagem-app
 
   registries:
     projects: 00-system/registries/projects.yaml
     adapters: 00-system/registries/agent-adapter-projects.yaml
 
   project_entrypoint:
-    path: 02-projects/dan-images-prompts-2/project.md
+    path: 02-projects/prompt-imagem-app/project.md
 
 bootstrap:
   enabled: true
@@ -48,7 +48,7 @@ session_memory:
 graphify:
   enabled: true
   authority: DERIVED_ONLY
-  graphify_out_path: /Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/graphify-out
+  graphify_out_path: /Users/PROJETOS-DEV/PROMPT-IMAGEM-APP/graphify-out
   read_when:
     - explicitly_authorized
     - fresh

@@ -1,18 +1,25 @@
 ---
-description:  Assess release readiness. This command does not deploy without explicit authorization.
+description: Assess release readiness and prepare production deployment. Never deploys without explicit authorization.
 ---
 
 # /release
 
-Assess release readiness. This command does not deploy without explicit authorization.
+Assess release readiness and prepare deployment. This command NEVER deploys without explicit human authorization.
 
-1. Confirm the intended environment and package manager.
-2. Check worktree state, required environment variables, and secret references.
-3. Run `/test` and `/quality` expectations, then `pnpm build` when authorized for the release check.
-4. Verify `dist/server.cjs`, static SPA serving, `/api/health`, upload behavior, Gemini fallback behavior, and Google Workspace configuration.
-5. Verify the selected `PERSISTENCE_PROVIDER`; exercise filesystem or Firestore startup without printing credentials.
-6. For Cloud Run, verify that production data uses a durable repository and that uploads do not depend on ephemeral local storage.
-7. Confirm Firebase identity verification and authorization expectations for the target environment.
-8. Produce go/no-go findings, rollback requirements, and any manual smoke tests.
-
-Stop before publishing, deploying, migrating data, or changing external services unless the user explicitly authorizes that action.
+1. **Preflight Environment Check:** Verify pnpm canonical lockfile and clean git status.
+2. **Quality & Test Gate:**
+   - Execute `pnpm exec tsc --noEmit`
+   - Execute `pnpm test`
+3. **Production Build:**
+   - Execute `pnpm run build`
+   - Confirm `dist/` and `dist/server.cjs` artifacts are created cleanly.
+4. **Cloud Run Runtime Audit:**
+   - Verify `PERSISTENCE_PROVIDER=firestore` for Cloud Run instances.
+   - Verify `GOOGLE_CLOUD_PROJECT` and `FIRESTORE_DATABASE_ID` match `firebase-applet-config.json`.
+   - Ensure `ALLOWED_LOGIN_EMAILS` is configured.
+   - Confirm upload directories and secrets are properly isolated.
+5. **Human Approval Gate:**
+   - Present readiness assessment table to user.
+   - **STOP** and wait for explicit approval (`Aprovado` / `Proceed`).
+6. **Execution (Post-Approval Only):**
+   - Execute deployment to Cloud Run using `./agents/workflows/test-and-deploy.md`.
