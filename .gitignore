@@ -7,5 +7,3 @@ coverage/
 .env*
 !.env.example
 *-temp/
-firebase-applet-config.json
-dataconnect-generated/

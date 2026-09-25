@@ -1,0 +1,36 @@
+.gcloudignore
+.git
+.gitignore
+
+# Dependencies (built in container)
+node_modules/
+
+# Built artifacts
+dist/
+build/
+
+# Local data and uploads (ephemeral)
+/data/
+/data-*/
+/uploads/
+!src/data/
+
+# Environment secrets (managed in Cloud Run)
+.env
+.env.*
+!.env.example
+
+# Dev and test files
+coverage/
+*.log
+tests/
+
+# Agent and IDE context
+.agents/
+.context/
+.claude/
+.qwen/
+agent/
+artifacts/
+docs/
+graphify-out/
