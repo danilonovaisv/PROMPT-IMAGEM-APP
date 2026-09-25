@@ -88,6 +88,20 @@ async function runProviderSelectionTests() {
     console.log('✓ Confirmed: ais-pre- container safely runs FilePromptRepository during deployment rollout');
     delete process.env.K_SERVICE;
 
+    // --- TEST 4c: AI Studio preview container with PERSISTENCE_PROVIDER=firestore safely runs FilePromptRepository if Firestore is unauthenticated ---
+    console.log('\n▶ [Test 4c] AI Studio preview container with PERSISTENCE_PROVIDER=firestore handles unauthenticated sandbox safely');
+    process.env.PERSISTENCE_PROVIDER = 'firestore';
+    process.env.K_SERVICE = 'ais-dev-icwvyljvs24u7r52kc6zep';
+    process.env.DATA_DIR = TEST_DATA_DIR;
+    _resetRepositoryInstanceForTesting();
+
+    const repoPreviewFirestore = await getPromptRepository();
+    assert(repoPreviewFirestore instanceof FilePromptRepository, 'Should safely resolve to FilePromptRepository in AI Studio preview sandbox');
+    assert.strictEqual(getActivePersistenceProvider(), 'filesystem');
+    console.log('✓ Confirmed: ais-dev- container with PERSISTENCE_PROVIDER=firestore safely falls back in preview sandbox');
+    delete process.env.K_SERVICE;
+    delete process.env.PERSISTENCE_PROVIDER;
+
     // --- TEST 5: Fail-closed on Firestore initialization error (NO SILENT FALLBACK) ---
     console.log('\n▶ [Test 5] PERSISTENCE_PROVIDER=firestore fails closed on error (no silent fallback)');
     process.env.PERSISTENCE_PROVIDER = 'firestore';

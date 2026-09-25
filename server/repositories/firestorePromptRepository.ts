@@ -112,7 +112,6 @@ export class FirestorePromptRepository implements PromptRepository {
         categoriesSeeded: categoriesSnap.empty ? seedCategories.length : 0,
       };
     } catch (err: any) {
-      console.warn('[persistence] Firestore seed/migration check encountered error:', err?.message || err);
       throw err;
     }
   }

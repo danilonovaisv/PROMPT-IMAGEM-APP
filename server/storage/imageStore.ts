@@ -53,10 +53,11 @@ class ImageStore {
       !!process.env.K_SERVICE &&
       (process.env.K_SERVICE.startsWith('ais-dev-') || process.env.K_SERVICE.startsWith('ais-pre-'));
 
+    if (isAIStudioPreview) return false;
+
     const isDevEnvironment =
       process.env.NODE_ENV === 'development' ||
-      process.env.NODE_ENV === 'test' ||
-      isAIStudioPreview;
+      process.env.NODE_ENV === 'test';
 
     const isProduction =
       !isDevEnvironment &&

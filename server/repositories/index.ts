@@ -41,7 +41,9 @@ export async function getPromptRepository(): Promise<PromptRepository> {
   if (rawProvider === 'filesystem') {
     provider = 'filesystem';
   } else if (rawProvider === 'firestore') {
-    provider = 'firestore';
+    // In AI Studio preview sandbox (ais-dev-* / ais-pre-*), container runner identities
+    // run without external GCP IAM permissions. Default to filesystem for preview.
+    provider = isAIStudioPreview ? 'filesystem' : 'firestore';
   } else {
     // If undefined or unrecognized string, default to firestore in production, filesystem in dev/preview
     provider = isProduction ? 'firestore' : 'filesystem';
@@ -54,6 +56,18 @@ export async function getPromptRepository(): Promise<PromptRepository> {
       repositoryInstance = firestoreRepo;
       return repositoryInstance;
     } catch (err: any) {
+      if (isAIStudioPreview) {
+        console.warn(
+          `[persistence] Notice: Firestore initialization skipped in AI Studio preview sandbox (${err?.message || err}). ` +
+          `AI Studio preview containers run under sandbox identities without external IAM permissions. ` +
+          `Using FilePromptRepository for development preview.`
+        );
+        const fileRepo = new FilePromptRepository(process.env.DATA_DIR);
+        await fileRepo.init();
+        repositoryInstance = fileRepo;
+        return repositoryInstance;
+      }
+
       const msg = `[persistence] Fatal: Failed to initialize Firestore repository: ${err.message || err}. ` +
         `Check GOOGLE_CLOUD_PROJECT, FIRESTORE_DATABASE_ID, and Google credentials. ` +
         `Silent fallback to ephemeral filesystem is strictly prohibited in durable mode.`;
