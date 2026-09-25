@@ -1,3 +1,7 @@
+---
+description: # Bug Diagnosis and Fix Workflow
+---
+
 # Bug Diagnosis and Fix Workflow
 
 Execute this workflow when reproducing, diagnosing, and resolving defects or unexpected behavior.
