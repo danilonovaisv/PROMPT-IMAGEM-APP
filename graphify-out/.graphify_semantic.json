@@ -1,0 +1,359 @@
+{
+  "nodes": [
+    {
+      "id": "agents_md",
+      "label": "DAN IMAGES PROMPTS Agent Guide",
+      "file_type": "document",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "readme_md",
+      "label": "DAN IMAGES PROMPTS README",
+      "file_type": "document",
+      "source_file": "README.md"
+    },
+    {
+      "id": "server_ai",
+      "label": "Gemini AI Integration Layer",
+      "file_type": "code",
+      "source_file": "server/ai/",
+      "rationale": "Contains Gemini integration and structured output logic."
+    },
+    {
+      "id": "server_repositories",
+      "label": "Persistence Repository Layer",
+      "file_type": "code",
+      "source_file": "server/repositories/",
+      "rationale": "Implements PromptRepository with filesystem and Firestore adapters."
+    },
+    {
+      "id": "server_workspace",
+      "label": "Google Workspace Integration",
+      "file_type": "code",
+      "source_file": "server/workspace/",
+      "rationale": "Handles Google Docs/Drive import and normalization."
+    },
+    {
+      "id": "server_validation",
+      "label": "Input Validation Layer",
+      "file_type": "code",
+      "source_file": "server/validation/",
+      "rationale": "Validates untrusted data at HTTP and persistence boundaries."
+    },
+    {
+      "id": "src_features",
+      "label": "Domain UI Features",
+      "file_type": "code",
+      "source_file": "src/features/"
+    },
+    {
+      "id": "src_components",
+      "label": "Reusable UI Components",
+      "file_type": "code",
+      "source_file": "src/components/"
+    },
+    {
+      "id": "gemini_api",
+      "label": "Google Gemini API",
+      "file_type": "concept",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "firestore",
+      "label": "Google Firestore",
+      "file_type": "concept",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "firebase_auth",
+      "label": "Firebase Authentication",
+      "file_type": "concept",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "agent_skills_google_cloud_waf_security_skill",
+      "label": "Google Cloud Well-Architected Framework (Security Pillar) Skill",
+      "file_type": "document",
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md",
+      "rationale": "Provides security-focused guidance for Google Cloud workloads based on WAF principles."
+    },
+    {
+      "id": "agent_skills_retrieving_developer_knowledge_skill",
+      "label": "Google Developer Knowledge Skill",
+      "file_type": "document",
+      "source_file": "agent/skills/retrieving-developer-knowledge/SKILL.md",
+      "rationale": "Retrieves official Google documentation via MCP or REST API fallback."
+    },
+    {
+      "id": "artifacts_agent_ide_prompt",
+      "label": "DAN-IMAGES-PROMPTS-2 Execution Prompt",
+      "file_type": "document",
+      "source_file": "artifacts/AGENT-IDE-PROMPT.md",
+      "rationale": "Defines the mission to audit and fix persistence and deployment for the DAN-IMAGES-PROMPTS-2 repository."
+    },
+    {
+      "id": "artifacts_audit_report",
+      "label": "Technical Audit Report",
+      "file_type": "document",
+      "source_file": "artifacts/AUDIT-REPORT.md",
+      "rationale": "Identifies filesystem persistence as the cause of data loss in Cloud Run and recommends Firestore."
+    },
+    {
+      "id": "artifacts_implementation_plan",
+      "label": "Cognitive Layer Implementation Plan",
+      "file_type": "document",
+      "source_file": "artifacts/implementation_plan.md",
+      "rationale": "Aligns agent-first layer with React, Express, Gemini, and Firebase architecture."
+    },
+    {
+      "id": "artifacts_task_list",
+      "label": "Cognitive Layer Task List",
+      "file_type": "document",
+      "source_file": "artifacts/task_list.md"
+    },
+    {
+      "id": "google_cloud_waf_security_by_design",
+      "label": "Security by Design",
+      "file_type": "concept",
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    },
+    {
+      "id": "google_cloud_waf_zero_trust",
+      "label": "Zero Trust",
+      "file_type": "concept",
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    },
+    {
+      "id": "google_cloud_waf_shared_responsibility",
+      "label": "Shared Responsibility and Shared Fate",
+      "file_type": "concept",
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    },
+    {
+      "id": "google_cloud_firestore",
+      "label": "Google Cloud Firestore",
+      "file_type": "concept",
+      "source_file": "artifacts/AUDIT-REPORT.md"
+    },
+    {
+      "id": "google_cloud_run",
+      "label": "Google Cloud Run",
+      "file_type": "concept",
+      "source_file": "artifacts/AUDIT-REPORT.md"
+    },
+    {
+      "id": "developerknowledge_googleapis_com",
+      "label": "Developer Knowledge API",
+      "file_type": "concept",
+      "source_file": "agent/skills/retrieving-developer-knowledge/SKILL.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "server_ai",
+      "target": "gemini_api",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/ai/"
+    },
+    {
+      "source": "server_repositories",
+      "target": "firestore",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/repositories/"
+    },
+    {
+      "source": "artifacts_agent_ide_prompt",
+      "target": "artifacts_audit_report",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "artifacts/AGENT-IDE-PROMPT.md"
+    },
+    {
+      "source": "artifacts_audit_report",
+      "target": "google_cloud_firestore",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "artifacts/AUDIT-REPORT.md"
+    },
+    {
+      "source": "artifacts_audit_report",
+      "target": "google_cloud_run",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "artifacts/AUDIT-REPORT.md"
+    },
+    {
+      "source": "artifacts_implementation_plan",
+      "target": "artifacts_task_list",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "artifacts/implementation_plan.md"
+    },
+    {
+      "source": "agent_skills_retrieving_developer_knowledge_skill",
+      "target": "developerknowledge_googleapis_com",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "agent/skills/retrieving-developer-knowledge/SKILL.md"
+    },
+    {
+      "source": "agent_skills_google_cloud_waf_security_skill",
+      "target": "google_cloud_waf_security_by_design",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    },
+    {
+      "source": "agent_skills_google_cloud_waf_security_skill",
+      "target": "google_cloud_waf_zero_trust",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    },
+    {
+      "source": "agent_skills_google_cloud_waf_security_skill",
+      "target": "google_cloud_waf_shared_responsibility",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    },
+    {
+      "source": "artifacts_agent_ide_prompt",
+      "target": "google_cloud_waf_shared_responsibility",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "artifacts/AGENT-IDE-PROMPT.md"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "prompt_cataloging_flow",
+      "label": "Prompt Cataloging Workflow",
+      "nodes": [
+        "src_features",
+        "server_ai",
+        "server_repositories"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "id": "google_integration_stack",
+      "label": "Google Ecosystem Integrations",
+      "nodes": [
+        "gemini_api",
+        "firestore",
+        "firebase_auth",
+        "server_workspace"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "persistence_remediation_flow",
+      "label": "Persistence Remediation Flow",
+      "nodes": [
+        "artifacts_agent_ide_prompt",
+        "artifacts_audit_report",
+        "google_cloud_firestore",
+        "google_cloud_run"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "artifacts/AGENT-IDE-PROMPT.md"
+    },
+    {
+      "id": "google_cloud_waf_principles",
+      "label": "WAF Security Principles",
+      "nodes": [
+        "google_cloud_waf_security_by_design",
+        "google_cloud_waf_zero_trust",
+        "google_cloud_waf_shared_responsibility"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "agent/skills/google-cloud-waf-security/SKILL.md"
+    }
+  ],
+  "input_tokens": 78151,
+  "output_tokens": 3636,
+  "failed_chunks": 0,
+  "out_of_scope_dropped": 2,
+  "uncovered_files": [
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/agents/api-domain-specialist.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/agents/frontend-specialist.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/agents/gemini-ai-specialist.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/agents/release-engineer.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/agents/security-auditor.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/mother-brain/README.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/mother-brain/project.yaml",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/app-security/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/cli-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/client-library-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/core-concepts.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/iac-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/iam-security.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/mcp-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/cloud-run-basics/references/networking.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/deployment-audit/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/express-api-contracts/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/finding-google-skills/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/gcloud/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/gcloud/references/cli-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/gcloud/references/mcp-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/gemini-multimodal-cataloging/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/google-cloud-recipe-auth/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/google-cloud-waf-security/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/persistence-adapters/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/persistence-production/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/react-vite-frontend/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/retrieving-developer-knowledge/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/retrieving-developer-knowledge/references/api-fallback.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/retrieving-developer-knowledge/references/mcp-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/skills/retrieving-developer-knowledge/references/supported-domains.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/workflows/quality.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/workflows/release.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.agents/workflows/test.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.context/conventions.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/.context/project-context.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/SECURITY.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/cli-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/client-library-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/core-concepts.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/iac-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/iam-security.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/mcp-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/cloud-run-basics/references/networking.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/finding-google-skills/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/gcloud/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/gcloud/references/cli-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/gcloud/references/mcp-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/google-cloud-recipe-auth/SKILL.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/retrieving-developer-knowledge/references/api-fallback.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/retrieving-developer-knowledge/references/mcp-usage.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/agent/skills/retrieving-developer-knowledge/references/supported-domains.md",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/index.html",
+    "/Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/pnpm-workspace.yaml"
+  ]
+}

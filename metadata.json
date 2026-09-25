@@ -1,0 +1,8 @@
+{
+  "name": "Remix DAN IMAGES PROMPTS",
+  "description": "Biblioteca inteligente para organizar, estruturar, pesquisar e reutilizar prompts de geração de imagens com Inteligência Artificial.\n\nO DAN IMAGES PROMPTS foi criado para resolver um problema comum no trabalho com imagens generativas: prompts eficientes, referências visuais e configurações de modelos acabam espalhados entre documentos, conversas, pastas e diferentes ferramentas.\n\nA proposta é transformar cada prompt em um ativo visual estruturado e reutilizável.\n\nVisão geral\n\nEm vez de armazenar somente um bloco de texto, o DAN IMAGES PROMPTS organiza cada entrada como uma combinação de:\n\nPrompt + imagem de referência + categoria + modelo + metadados",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

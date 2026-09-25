@@ -1,0 +1,6 @@
+{
+  "firestore": {
+    "database": "ai-studio-danimagesprompts-66ef31fb-e640-4078-a629-4ed21b3dab40",
+    "rules": "firestore.rules"
+  }
+}

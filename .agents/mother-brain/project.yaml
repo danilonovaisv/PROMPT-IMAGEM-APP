@@ -1,0 +1,73 @@
+schema_version: 1
+
+mother_brain:
+  root: /Users/danilonovais/OBSIDIAN
+  project_id: dan-images-prompts-2
+
+  registries:
+    projects: 00-system/registries/projects.yaml
+    adapters: 00-system/registries/agent-adapter-projects.yaml
+
+  project_entrypoint:
+    path: 02-projects/dan-images-prompts-2/project.md
+
+bootstrap:
+  enabled: true
+  read_before_task: true
+
+  order:
+    - memory_context_protocol
+    - external_repository_integrity_policy
+    - projects_registry
+    - adapter_registry
+    - project_entrypoint
+    - project_context
+    - relevant_global_context
+    - graphify_if_authorized
+    - repository_task_files
+
+memory:
+  durable_write:
+    automatic: false
+    human_gate_required: true
+
+  automatic_promotion: false
+
+  lifecycle:
+    - OBSERVED
+    - CANDIDATE
+    - VALIDATED
+    - HUMAN_AUTHORIZED
+    - CANONICAL
+
+session_memory:
+  mode: ephemeral
+  location: agent_runtime
+  retention: discard_at_session_close
+
+graphify:
+  enabled: true
+  authority: DERIVED_ONLY
+  graphify_out_path: /Users/PROJETOS-DEV/DAN-IMAGES-PROMPTS-2/graphify-out
+  read_when:
+    - explicitly_authorized
+    - fresh
+    - task_relevant
+  canonical_write: false
+
+wiki_brain:
+  enabled: false
+  authority: NAVIGATION_AND_CANDIDATE_ONLY
+  canonical_write: false
+  automatic_promotion: false
+
+mcp:
+  enabled: false
+
+external_repository:
+  code_authority: local_repository
+  durable_knowledge_authority: mother_brain
+  execution_trust: false
+
+session_close:
+  required: true

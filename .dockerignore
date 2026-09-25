@@ -1,0 +1,33 @@
+# Dependencies (rebuilt inside Docker)
+node_modules/
+
+# Built artifacts (rebuilt inside Docker)
+dist/
+build/
+
+# Local data and uploads (efêmeros, não devem ir para o container)
+data/
+data-*/
+uploads/
+
+# Environment secrets (gerenciados pelo Secret Manager no Cloud Run)
+.env
+.env.*
+!.env.example
+
+# Dev and test files
+coverage/
+*.log
+
+# OS e editor
+.DS_Store
+.git/
+.gitignore
+
+# Firebase local
+.firebase/
+
+# Docs e assets não essenciais para runtime
+docs/
+artifacts/
+agent/

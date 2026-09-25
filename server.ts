@@ -1,0 +1,586 @@
+import 'dotenv/config';
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+import multer from 'multer';
+import { createServer as createViteServer } from 'vite';
+import { UPLOADS_DIR } from './server/prompts/storage';
+import { getPromptRepository, getActivePersistenceProvider } from './server/repositories';
+import { analyzeAndDecomposePrompt } from './server/ai/promptAnalyzer';
+import { validatePromptInput } from './server/validation/promptSchema';
+import { importPromptsFromWorkspace, importPromptsFromRawTextAndFiles } from './server/workspace/googleWorkspaceService';
+import { createAuthenticateFirebaseToken, IMAGE_SESSION_COOKIE, requireAuth, VerifyIdToken } from './server/validation/authMiddleware';
+import { imageStore } from './server/storage/imageStore';
+
+// Cloud Run always injects $PORT. Fall back to 3000 for local dev.
+const DEFAULT_PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+
+// Configure Multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, UPLOADS_DIR);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname) || '.jpg';
+    const uniqueName = `img-${Date.now()}-${Math.random().toString(36).substring(2, 8)}${ext}`;
+    cb(null, uniqueName);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 15 * 1024 * 1024 }, // 15MB max
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Apenas arquivos de imagem são permitidos.'));
+    }
+  },
+});
+
+async function startServer(customPort?: number, verifyIdToken?: VerifyIdToken) {
+  const app = express();
+
+  // ─── Startup readiness state ───────────────────────────────────────────────
+  // The server binds to the port FIRST so Cloud Run health checks always pass.
+  // API requests made before the repository is ready receive a 503 response.
+  let repositoryReady = false;
+  let repository: Awaited<ReturnType<typeof getPromptRepository>> | null = null;
+  let initError: Error | null = null;
+
+  // Middleware: block API calls until repository is initialized
+  app.use('/api', (req, res, next) => {
+    // Health check is always available
+    if (req.path === '/health') return next();
+    if (!repositoryReady) {
+      if (initError) {
+        return res.status(503).json({
+          error: 'Serviço indisponível: falha na inicialização da persistência.',
+        });
+      }
+      return res.status(503).json({ error: 'Servidor a inicializar, tente novamente em instantes.' });
+    }
+    next();
+  });
+
+  // CORS & Preflight handling for /api routes
+  app.use('/api', (req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, Cookie');
+
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204);
+    }
+    next();
+  });
+
+  // Middleware for body parsing and authentication
+  app.use(express.json({ limit: '20mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+  const authenticate = createAuthenticateFirebaseToken(verifyIdToken);
+  app.use('/api', (req, res, next) => {
+    if (req.path === '/health') return next();
+    authenticate(req, res, next);
+  });
+  app.use('/api', (req, res, next) => {
+    if (req.path === '/health') return next();
+    requireAuth(req, res, next);
+  });
+
+  app.get('/api/auth/session', (req, res) => {
+    const token = req.headers.authorization?.slice(7).trim();
+    if (!token) return res.status(401).json({ error: 'Token de autenticação ausente.' });
+    res.cookie(IMAGE_SESSION_COOKIE, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      path: '/api/uploads',
+      maxAge: 50 * 60 * 1000,
+    });
+    res.json({ user: req.user });
+  });
+
+  app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie(IMAGE_SESSION_COOKIE, { path: '/api/uploads' });
+    res.status(204).end();
+  });
+
+  // Serve uploaded images with fallback to durable Firestore storage
+  app.get('/api/uploads/:filename', async (req, res, next) => {
+    try {
+      const filename = path.basename(req.params.filename);
+      const img = await imageStore.getImage(filename);
+      if (img) {
+        res.setHeader('Content-Type', img.mimeType);
+        res.setHeader('Cache-Control', 'private, no-store');
+        return res.send(img.buffer);
+      }
+      return res.status(404).json({ error: 'Imagem não encontrada.' });
+    } catch (err: any) {
+      console.warn(`Aviso ao servir imagem ${req.params.filename}:`, err?.message || err);
+      return res.status(503).json({ error: 'Imagem temporariamente indisponível.' });
+    }
+  });
+
+  // Serve uploaded images statically as local cache
+  app.use('/api/uploads', express.static(UPLOADS_DIR, {
+    setHeaders: (res) => res.setHeader('Cache-Control', 'private, no-store'),
+  }));
+
+  // --- API Routes ---
+
+  app.param('id', (req, res, next, id) => {
+    if (typeof id !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$/.test(id)) {
+      res.status(400).json({ error: 'Identificador inválido.' });
+      return;
+    }
+    next();
+  });
+
+  // Health check
+  app.get('/api/health', (req, res) => {
+    res.json({
+      status: 'ok',
+      hasGeminiKey: !!process.env.GEMINI_API_KEY,
+      persistenceProvider: getActivePersistenceProvider(),
+      timestamp: new Date().toISOString(),
+    });
+  });
+
+  // AI Prompt Analysis & Decomposition
+  app.post('/api/analyze-prompt', async (req, res) => {
+    try {
+      const { rawPrompt, targetModel, category, imageBase64, imageMimeType, imageUrl } = req.body;
+
+      if (!rawPrompt || typeof rawPrompt !== 'string') {
+        return res.status(400).json({ error: 'O texto do prompt é obrigatório para a análise.' });
+      }
+
+      const result = await analyzeAndDecomposePrompt({
+        rawPrompt,
+        targetModel,
+        category,
+        imageBase64,
+        imageMimeType,
+        imageUrl,
+      });
+
+      res.json(result);
+    } catch (err: any) {
+      console.error('Erro no endpoint /api/analyze-prompt:', err);
+      res.status(500).json({
+        error: err.message || 'Erro ao analisar prompt com IA',
+      });
+    }
+  });
+
+  // File Upload endpoint (multipart)
+  app.post('/api/upload', upload.single('image') as unknown as express.RequestHandler, async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'Nenhum arquivo de imagem foi enviado.' });
+      }
+
+      // Persist to durable storage (Firestore + disk cache)
+      const fileBuffer = fs.readFileSync(req.file.path);
+      const fileUrl = await imageStore.saveImage(req.file.filename, fileBuffer, req.file.mimetype);
+
+      res.json({
+        url: fileUrl,
+        filename: req.file.filename,
+        mimetype: req.file.mimetype,
+        size: req.file.size,
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Erro ao processar upload de imagem.' });
+    }
+  });
+
+  // Base64 image upload endpoint (converts base64 to durable file in Firestore + disk cache)
+  app.post('/api/upload-base64', async (req, res) => {
+    try {
+      const { data, mimeType = 'image/jpeg' } = req.body;
+      if (!data) {
+        return res.status(400).json({ error: 'Dados base64 ausentes' });
+      }
+
+      const { url, filename } = await imageStore.saveBase64Image(data, mimeType, 'img');
+
+      res.json({
+        url,
+        filename,
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Erro ao salvar imagem base64.' });
+    }
+  });
+
+  // Prompts CRUD
+  app.get('/api/prompts', async (req, res) => {
+    try {
+      const { search, category, model, tag, favorites, sortBy } = req.query;
+      const repo = await getPromptRepository();
+      const prompts = await repo.getPrompts({
+        search: search as string,
+        category: category as string,
+        model: model as string,
+        tag: tag as string,
+        onlyFavorites: favorites === 'true',
+        sortBy: sortBy as string,
+      });
+      res.json(prompts);
+    } catch (err: any) {
+      console.error('Error fetching prompts:', err);
+      res.status(500).json({ error: 'Erro ao carregar prompts.' });
+    }
+  });
+
+  app.get('/api/prompts/:id', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const prompt = await repo.getPromptById(req.params.id);
+      if (!prompt) {
+        return res.status(404).json({ error: 'Prompt não encontrado.' });
+      }
+      res.json(prompt);
+    } catch (err: any) {
+      console.error('Error fetching prompt:', err);
+      res.status(500).json({ error: 'Erro ao buscar prompt.' });
+    }
+  });
+
+  app.post('/api/prompts', async (req, res) => {
+    const validation = validatePromptInput(req.body);
+    if (!validation.isValid) {
+      return res.status(400).json({ error: validation.error });
+    }
+
+    try {
+      const promptPayload = {
+        ...req.body,
+        ...(req.user?.uid ? { userId: req.user.uid, createdBy: req.user.email || req.user.name || req.user.uid } : {}),
+      };
+      const repo = await getPromptRepository();
+      const created = await repo.createPrompt(promptPayload);
+      res.status(201).json(created);
+    } catch (err: any) {
+      console.error('Error creating prompt:', err);
+      res.status(500).json({ error: 'Erro ao criar prompt.' });
+    }
+  });
+
+  app.put('/api/prompts/:id', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const updated = await repo.updatePrompt(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: 'Prompt não encontrado.' });
+      }
+      res.json(updated);
+    } catch (err: any) {
+      console.error('Error updating prompt:', err);
+      res.status(500).json({ error: 'Erro ao atualizar prompt.' });
+    }
+  });
+
+  app.delete('/api/prompts/:id', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const success = await repo.deletePrompt(req.params.id);
+      if (!success) {
+        return res.status(404).json({ error: 'Prompt não encontrado para exclusão.' });
+      }
+      res.json({ success: true, message: 'Prompt excluído com sucesso.' });
+    } catch (err: any) {
+      console.error('Error deleting prompt:', err);
+      res.status(500).json({ error: 'Erro ao excluir prompt.' });
+    }
+  });
+
+  app.post('/api/prompts/:id/favorite', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const updated = await repo.toggleFavorite(req.params.id);
+      if (!updated) {
+        return res.status(404).json({ error: 'Prompt não encontrado.' });
+      }
+      res.json(updated);
+    } catch (err: any) {
+      console.error('Error favoriting prompt:', err);
+      res.status(500).json({ error: 'Erro ao favoritar prompt.' });
+    }
+  });
+
+  app.post('/api/prompts/:id/copy', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const updated = await repo.incrementCopyCount(req.params.id);
+      if (!updated) {
+        return res.status(404).json({ error: 'Prompt não encontrado.' });
+      }
+      res.json(updated);
+    } catch (err: any) {
+      console.error('Error incrementing copy count:', err);
+      res.status(500).json({ error: 'Erro ao registrar cópia.' });
+    }
+  });
+
+  app.post('/api/prompts/:id/duplicate', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const duplicated = await repo.duplicatePrompt(req.params.id);
+      if (!duplicated) {
+        return res.status(404).json({ error: 'Prompt não encontrado.' });
+      }
+      res.status(201).json(duplicated);
+    } catch (err: any) {
+      console.error('Error duplicating prompt:', err);
+      res.status(500).json({ error: 'Erro ao duplicar prompt.' });
+    }
+  });
+
+  // Categories CRUD
+  app.get('/api/categories', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const categories = await repo.getCategories();
+      res.json(categories);
+    } catch (err: any) {
+      console.error('Error getting categories:', err);
+      res.status(500).json({ error: 'Erro ao carregar categorias.' });
+    }
+  });
+
+  app.post('/api/categories', async (req, res) => {
+    try {
+      const { name, slug, icon, color, description } = req.body;
+      if (!name || !name.trim()) {
+        return res.status(400).json({ error: 'O nome da categoria é obrigatório.' });
+      }
+      const repo = await getPromptRepository();
+      const created = await repo.createCategory({
+        name: name.trim(),
+        slug: slug || name.toLowerCase().replace(/\s+/g, '-'),
+        icon: icon || 'Tag',
+        color: color || 'indigo',
+        description,
+      });
+      res.status(201).json(created);
+    } catch (err: any) {
+      console.error('Error creating category:', err);
+      res.status(500).json({ error: 'Erro ao criar categoria.' });
+    }
+  });
+
+  app.put('/api/categories/:id', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const updated = await repo.updateCategory(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: 'Categoria não encontrada.' });
+      }
+      res.json(updated);
+    } catch (err: any) {
+      console.error('Error updating category:', err);
+      res.status(500).json({ error: 'Erro ao atualizar categoria.' });
+    }
+  });
+
+  app.delete('/api/categories/:id', async (req, res) => {
+    try {
+      const repo = await getPromptRepository();
+      const success = await repo.deleteCategory(req.params.id);
+      if (!success) {
+        return res.status(400).json({ error: 'Não é possível excluir categorias padrão do sistema ou categoria inexistente.' });
+      }
+      res.json({ success: true });
+    } catch (err: any) {
+      console.error('Error deleting category:', err);
+      res.status(500).json({ error: 'Erro ao excluir categoria.' });
+    }
+  });
+
+  // Reset database to initial sample data
+  app.post('/api/reset-data', async (req, res) => {
+    // In production, guard reset operations against accidental data destruction
+    if (process.env.NODE_ENV === 'production' && process.env.ALLOW_PROD_RESET !== 'true') {
+      return res.status(403).json({
+        error: 'Restauração de fábrica bloqueada em ambiente de produção para proteção de dados.',
+      });
+    }
+
+    try {
+      const repo = await getPromptRepository();
+      await repo.resetToDefaults();
+      res.json({ success: true, message: 'Dados restaurados para o padrão.' });
+    } catch (err: any) {
+      console.error('Error resetting data:', err);
+      res.status(500).json({ error: 'Erro ao restaurar dados padrão.' });
+    }
+  });
+
+  // Google Workspace endpoints
+  app.get('/api/workspace/config', (req, res) => {
+    res.json({
+      defaultDocUrl: 'https://docs.google.com/document/d/1v3R4JZqAWiBfNMCnIamCnvXpcXYKcgI6J9HZkSWmp2I/edit?usp=drive_link',
+      defaultFolderUrl: 'https://drive.google.com/drive/folders/1ceHlomDrh3Lu_nmLN_LXxrymIShvMdoK?usp=drive_link',
+      defaultDocId: '1v3R4JZqAWiBfNMCnIamCnvXpcXYKcgI6J9HZkSWmp2I',
+      defaultFolderId: '1ceHlomDrh3Lu_nmLN_LXxrymIShvMdoK',
+      hasGoogleClientId: !!(process.env.GOOGLE_CLIENT_ID || process.env.VITE_GOOGLE_CLIENT_ID),
+    });
+  });
+
+  app.post('/api/workspace/import', async (req, res) => {
+    try {
+      const { accessToken, docUrlOrId, folderUrlOrId, autoAnalyzeWithAI } = req.body;
+
+      if (!accessToken || typeof accessToken !== 'string') {
+        return res.status(401).json({
+          error: 'Token de autenticação OAuth do Google (accessToken) não fornecido.',
+        });
+      }
+
+      const result = await importPromptsFromWorkspace({
+        accessToken,
+        docUrlOrId,
+        folderUrlOrId,
+        autoAnalyzeWithAI: autoAnalyzeWithAI ?? true,
+      });
+
+      res.json(result);
+    } catch (err: any) {
+      console.error('Erro ao importar prompts do Google Workspace:', err);
+      res.status(500).json({
+        error: err.message || 'Erro ao processar importação do Google Docs e Drive.',
+      });
+    }
+  });
+
+  // Direct Text & Uploaded Images Batch Import (No OAuth required!)
+  app.post('/api/workspace/direct-text-import', async (req, res) => {
+    try {
+      const { rawText, imageFiles, autoAnalyzeWithAI } = req.body;
+
+      if (!rawText || typeof rawText !== 'string' || !rawText.trim()) {
+        return res.status(400).json({
+          error: 'Por favor, forneça o texto dos prompts para importação.',
+        });
+      }
+
+      const result = await importPromptsFromRawTextAndFiles({
+        rawText,
+        imageFiles: Array.isArray(imageFiles) ? imageFiles : [],
+        autoAnalyzeWithAI: autoAnalyzeWithAI ?? true,
+      });
+
+      res.json(result);
+    } catch (err: any) {
+      console.error('Erro ao importar texto de prompts:', err);
+      res.status(500).json({
+        error: err.message || 'Erro ao processar importação de texto e imagens.',
+      });
+    }
+  });
+
+  // Batch Image Upload endpoint
+  app.post('/api/workspace/upload-batch-images', upload.array('images', 50) as unknown as express.RequestHandler, async (req, res) => {
+    try {
+      const files = req.files as Express.Multer.File[];
+      if (!files || files.length === 0) {
+        return res.status(400).json({ error: 'Nenhuma imagem foi enviada.' });
+      }
+
+      const uploadedList = [];
+      for (const file of files) {
+        const fileBuffer = fs.readFileSync(file.path);
+        const localUrl = await imageStore.saveImage(file.filename, fileBuffer, file.mimetype);
+        uploadedList.push({
+          originalName: file.originalname,
+          localUrl,
+          size: file.size,
+        });
+      }
+
+      res.json({
+        success: true,
+        count: uploadedList.length,
+        files: uploadedList,
+      });
+    } catch (err: any) {
+      console.error('Erro no upload em lote de imagens:', err);
+      res.status(500).json({ error: 'Falha ao processar upload das imagens.' });
+    }
+  });
+
+  // --- Vite / Frontend Serving ---
+  // In development (including AI Studio preview ais-dev-*) or when dist hasn't been built,
+  // use Vite dev middleware. In production with built dist, serve static files.
+  const isDevPreview = !!process.env.K_SERVICE && process.env.K_SERVICE.startsWith('ais-dev-');
+  const isExplicitDev = process.env.NODE_ENV === 'development' || isDevPreview;
+  const distPath = path.join(process.cwd(), 'dist');
+  const hasDistIndex = fs.existsSync(path.join(distPath, 'index.html'));
+
+  if (process.env.NODE_ENV !== 'test' && (isExplicitDev || !hasDistIndex)) {
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+  } else if (process.env.NODE_ENV !== 'test') {
+    app.use(express.static(distPath));
+    app.get('*all', (req, res) => {
+      const indexPath = path.join(distPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).send('Assets not found. Please build the application.');
+      }
+    });
+  }
+
+  const port = customPort || DEFAULT_PORT;
+  const server = await new Promise<import('http').Server>((resolve, reject) => {
+    const s = app.listen(port, '0.0.0.0', () => {
+      console.log(`DAN IMAGES PROMPTS Server running at http://0.0.0.0:${port}`);
+      resolve(s);
+    });
+    s.once('error', reject);
+  });
+
+  // Initialize repository AFTER port is open so Cloud Run health check passes immediately
+  try {
+    repository = await getPromptRepository();
+    repositoryReady = true;
+    console.log('[startup] Repositório de persistência inicializado com sucesso.');
+    // Sync any existing local files to durable Firestore storage in background
+    if (imageStore.shouldAttemptFirestore()) {
+      imageStore.syncLocalUploads().catch(err => {
+        console.warn('Background sync of uploads failed:', err?.message || err);
+      });
+    }
+  } catch (err: any) {
+    initError = err;
+    console.error('[startup] FALHA na inicialização do repositório:', err?.message || err);
+    // Do NOT exit — keep server running so Cloud Run health check passes.
+    // Requests will receive 503 until the issue is resolved by a new deploy.
+  }
+
+  return { app, server, repository };
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  startServer().catch((err) => {
+    console.error('Falha ao iniciar o servidor:', err);
+    process.exit(1);
+  });
+}
+
+export { startServer };

@@ -1,0 +1,47 @@
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && node scripts/build-server.js",
+    "start": "node dist/server.cjs",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit",
+    "test": "tsx tests/auth.test.ts && tsx tests/persistence.test.ts && tsx tests/api-persistence.test.ts && tsx tests/provider-selection.test.ts && tsx tests/firestore-durable.test.ts",
+    "test:auth": "tsx tests/auth.test.ts",
+    "check:updates": "pnpm outdated || true",
+    "update:deps": "(pnpm outdated || true) && npx npm-check-updates -u && pnpm install"
+  },
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "cookie": "^2.0.1",
+    "dotenv": "^18.0.3",
+    "express": "^5.2.1",
+    "firebase": "^12.19.0",
+    "firebase-admin": "^14.4.0",
+    "lucide-react": "^1.47.0",
+    "motion": "^13.4.1",
+    "multer": "^2.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "vite": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.1",
+    "esbuild": "^0.28.2",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.0"
+  }
+}
