@@ -18,6 +18,7 @@ uploads/
 # Dev and test files
 coverage/
 *.log
+tests/
 
 # OS e editor
 .DS_Store
@@ -27,7 +28,12 @@ coverage/
 # Firebase local
 .firebase/
 
-# Docs e assets não essenciais para runtime
-docs/
-artifacts/
+# Agent context and knowledge (não essenciais para runtime)
+.agents/
+.context/
+.claude/
+.qwen/
 agent/
+artifacts/
+docs/
+graphify-out/

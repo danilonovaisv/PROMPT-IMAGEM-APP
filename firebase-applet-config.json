@@ -3,6 +3,7 @@
   "appId": "1:3693375016:web:65309fd0865a58fcb70f1d",
   "apiKey": "AIzaSyB2kmWxVkcWAOaFnkNqigBhDHlBr6h-ndQ",
   "authDomain": "prompt-imagem-app.firebaseapp.com",
+  "databaseURL": "https://prompt-imagem-app-default-rtdb.firebaseio.com",
   "firestoreDatabaseId": "prompt-imagem-app",
   "storageBucket": "prompt-imagem-app.firebasestorage.app",
   "messagingSenderId": "3693375016",

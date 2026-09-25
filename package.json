@@ -16,6 +16,8 @@
     "update:deps": "(pnpm outdated || true) && npx npm-check-updates -u && pnpm install"
   },
   "dependencies": {
+    "@dataconnect/admin-generated": "file:src/dataconnect-admin-generated",
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "@google/genai": "^2.24.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.1",
