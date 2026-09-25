@@ -2,8 +2,8 @@ import { applicationDefault, getApp, initializeApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
-// Normalize project ID and database ID so stale/placeholder environment variables
-// (such as 'prompt-imagem-app') do not break connections to the applet's provisioned database.
+// Normalize project ID and database ID so environment variables align with
+// the application's configured Firebase project and database.
 const resolvedProjectId =
   firebaseConfig.projectId && firebaseConfig.projectId.trim() !== ''
     ? firebaseConfig.projectId
