@@ -1,12 +1,12 @@
 {
   "projectId": "prompt-imagem-app",
-  "appId": "1:982857143236:web:dd5178735fc59fc8b18a91",
-  "apiKey": "AIzaSyBxGH2hVKv9GXp8t8a0oEoyLdLIhC3H5d0",
+  "appId": "1:3693375016:web:65309fd0865a58fcb70f1d",
+  "apiKey": "AIzaSyB2kmWxVkcWAOaFnkNqigBhDHlBr6h-ndQ",
   "authDomain": "prompt-imagem-app.firebaseapp.com",
   "firestoreDatabaseId": "prompt-imagem-app",
   "storageBucket": "prompt-imagem-app.firebasestorage.app",
-  "messagingSenderId": "982857143236",
+  "messagingSenderId": "3693375016",
   "measurementId": "",
-  "oAuthClientId": "982857143236-up52s4oai0fe05tv7j91vlt786hk3b00.apps.googleusercontent.com",
+  "oAuthClientId": "3693375016-qafk9c70b3e8pjdmsn7f8mvcp7kbulqi.apps.googleusercontent.com",
   "recaptchaSiteKey": ""
 }

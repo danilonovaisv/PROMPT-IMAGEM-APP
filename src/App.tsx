@@ -446,6 +446,8 @@ function AuthenticatedApp() {
               ? 'Erro de conexão de rede ao comunicar com os servidores do Google. Verifique sua conexão e tente novamente.'
             : code === 'auth/invalid-credential' || code === 'auth/operation-not-allowed'
               ? 'A configuração de login do Google está inválida no Firebase Console. Contate o administrador.'
+            : code === 'auth/invalid-continue-uri'
+              ? 'O domínio de redirecionamento ou configuração do Firebase Auth é inválido. Verifique os domínios autorizados no Firebase Console.'
             : error instanceof Error ? error.message : 'Falha ao entrar com Google. Tente novamente.';
       setAccess({ status: 'signedOut', message });
     } finally {
