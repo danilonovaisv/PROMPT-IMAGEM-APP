@@ -1,0 +1,404 @@
+{
+  ".mcp.json": {
+    "mtime": 1787489845.2006204,
+    "seen": 1790291393.766034,
+    "ast_hash": "51fa4470dd28b56943bc4f0c9626b1fb",
+    "semantic_hash": "51fa4470dd28b56943bc4f0c9626b1fb"
+  },
+  "data/categories.json": {
+    "mtime": 1787490250.9407878,
+    "seen": 1790291393.766037,
+    "ast_hash": "99289fcfc9a6841195e176db9529094a",
+    "semantic_hash": "99289fcfc9a6841195e176db9529094a"
+  },
+  "data/prompts.json": {
+    "mtime": 1788329215.5345812,
+    "seen": 1790291393.766038,
+    "ast_hash": "ea266f6a8ca330edf3fec37040853982",
+    "semantic_hash": "ea266f6a8ca330edf3fec37040853982"
+  },
+  "firebase-applet-config.json": {
+    "mtime": 1790134842.1124673,
+    "seen": 1790291393.7660391,
+    "ast_hash": "47b6c398e38f0354e6912cd9fe31cd47",
+    "semantic_hash": "47b6c398e38f0354e6912cd9fe31cd47"
+  },
+  "firebase-blueprint.json": {
+    "mtime": 1790134842.1130292,
+    "seen": 1790291393.7660391,
+    "ast_hash": "7336b232e582d24f830de608fbdcdea3",
+    "semantic_hash": "7336b232e582d24f830de608fbdcdea3"
+  },
+  "firebase.json": {
+    "mtime": 1790134842.1131914,
+    "seen": 1790291393.76604,
+    "ast_hash": "94144df9ba66ac7908025332caa17460",
+    "semantic_hash": "94144df9ba66ac7908025332caa17460"
+  },
+  "metadata.json": {
+    "mtime": 1787534588.133596,
+    "seen": 1790291393.766041,
+    "ast_hash": "f1d2d6e7366e4db4314e6d4db0117eb3",
+    "semantic_hash": "f1d2d6e7366e4db4314e6d4db0117eb3"
+  },
+  "package.json": {
+    "mtime": 1790290051.9308395,
+    "seen": 1790291393.766041,
+    "ast_hash": "487d94c711a9b8a8b8469aa4c5ae342e",
+    "semantic_hash": "487d94c711a9b8a8b8469aa4c5ae342e"
+  },
+  "scripts/build-server.js": {
+    "mtime": 1787527396.7052336,
+    "seen": 1790291393.766042,
+    "ast_hash": "dccf6bbb7658405eb9e2c38b47e8abb7",
+    "semantic_hash": "dccf6bbb7658405eb9e2c38b47e8abb7"
+  },
+  "server.ts": {
+    "mtime": 1790290051.9313664,
+    "seen": 1790291393.766043,
+    "ast_hash": "1b0b3310f63712f50575ce42f2c06951",
+    "semantic_hash": "1b0b3310f63712f50575ce42f2c06951"
+  },
+  "server/ai/gemini.ts": {
+    "mtime": 1787534588.1342533,
+    "seen": 1790291393.766043,
+    "ast_hash": "33030141b1ea404a1781649368ba15f8",
+    "semantic_hash": "33030141b1ea404a1781649368ba15f8"
+  },
+  "server/ai/promptAnalyzer.ts": {
+    "mtime": 1790134842.1145067,
+    "seen": 1790291393.766044,
+    "ast_hash": "03a3fd89f8b1edc8e8e5fc1501c0b19e",
+    "semantic_hash": "03a3fd89f8b1edc8e8e5fc1501c0b19e"
+  },
+  "server/firebase/admin.ts": {
+    "mtime": 1790290051.9314935,
+    "seen": 1790291393.7660449,
+    "ast_hash": "207c14b298276ccda8f941c56d3d9259",
+    "semantic_hash": "207c14b298276ccda8f941c56d3d9259"
+  },
+  "server/prompts/storage.ts": {
+    "mtime": 1787808716.6534164,
+    "seen": 1790291393.766046,
+    "ast_hash": "bc19fb0248ba35459114ee1073fbf7a0",
+    "semantic_hash": "bc19fb0248ba35459114ee1073fbf7a0"
+  },
+  "server/repositories/filePromptRepository.ts": {
+    "mtime": 1787808703.2495108,
+    "seen": 1790291393.766046,
+    "ast_hash": "c336301ea08d56df841bce616bba6311",
+    "semantic_hash": "c336301ea08d56df841bce616bba6311"
+  },
+  "server/repositories/firestorePromptRepository.ts": {
+    "mtime": 1790290051.9316506,
+    "seen": 1790291393.766047,
+    "ast_hash": "11676d954948872c2035c4cdc7890100",
+    "semantic_hash": "11676d954948872c2035c4cdc7890100"
+  },
+  "server/repositories/index.ts": {
+    "mtime": 1790159326.8172638,
+    "seen": 1790291393.766048,
+    "ast_hash": "0dd80eb49c1643d0be122334c664b275",
+    "semantic_hash": "0dd80eb49c1643d0be122334c664b275"
+  },
+  "server/repositories/promptRepository.ts": {
+    "mtime": 1787808686.3866751,
+    "seen": 1790291393.766048,
+    "ast_hash": "8bbaa8220e5adf7e72b2671fae79ff1c",
+    "semantic_hash": "8bbaa8220e5adf7e72b2671fae79ff1c"
+  },
+  "server/storage/imageStore.ts": {
+    "mtime": 1790290051.9318616,
+    "seen": 1790291393.766049,
+    "ast_hash": "e2446d9164501d1f6c28be7c39178a7b",
+    "semantic_hash": "e2446d9164501d1f6c28be7c39178a7b"
+  },
+  "server/validation/aiAnalysisSchema.ts": {
+    "mtime": 1788329215.5364041,
+    "seen": 1790291393.76605,
+    "ast_hash": "22fab79a5977908247c8e1b00840e731",
+    "semantic_hash": "22fab79a5977908247c8e1b00840e731"
+  },
+  "server/validation/authMiddleware.ts": {
+    "mtime": 1790290051.932001,
+    "seen": 1790291393.76605,
+    "ast_hash": "1fb18913f6286f9034c44445c9d2c356",
+    "semantic_hash": "1fb18913f6286f9034c44445c9d2c356"
+  },
+  "server/validation/promptSchema.ts": {
+    "mtime": 1787534588.1346664,
+    "seen": 1790291393.766051,
+    "ast_hash": "48fc63602a003d3f547f183d7fd028ab",
+    "semantic_hash": "48fc63602a003d3f547f183d7fd028ab"
+  },
+  "server/workspace/googleWorkspaceService.ts": {
+    "mtime": 1790134842.1156676,
+    "seen": 1790291393.766052,
+    "ast_hash": "c6712f3f0fe49d4b6702ea9cbeb66bc3",
+    "semantic_hash": "c6712f3f0fe49d4b6702ea9cbeb66bc3"
+  },
+  "skills-lock.json": {
+    "mtime": 1789080609.077599,
+    "seen": 1790291393.7660532,
+    "ast_hash": "68f6027c10b13f5398bdb55ba086d683",
+    "semantic_hash": "68f6027c10b13f5398bdb55ba086d683"
+  },
+  "src/App.tsx": {
+    "mtime": 1790290051.932183,
+    "seen": 1790291393.7660532,
+    "ast_hash": "8d8ae7742bd59e9c1fb6149f0af166d2",
+    "semantic_hash": "8d8ae7742bd59e9c1fb6149f0af166d2"
+  },
+  "src/components/AppIcon.tsx": {
+    "mtime": 1787534588.1351342,
+    "seen": 1790291393.766054,
+    "ast_hash": "998b870c0690206a2fbcaa9675129d17",
+    "semantic_hash": "998b870c0690206a2fbcaa9675129d17"
+  },
+  "src/components/ConfirmDialog.tsx": {
+    "mtime": 1787534588.1353266,
+    "seen": 1790291393.7660549,
+    "ast_hash": "bdeb28e0e1cb38eee1b28bd5595e6c56",
+    "semantic_hash": "bdeb28e0e1cb38eee1b28bd5595e6c56"
+  },
+  "src/components/ImagePreviewModal.tsx": {
+    "mtime": 1787534588.135425,
+    "seen": 1790291393.7660549,
+    "ast_hash": "8520aff16e41804ff637c645cdd1140e",
+    "semantic_hash": "8520aff16e41804ff637c645cdd1140e"
+  },
+  "src/components/Navbar.tsx": {
+    "mtime": 1790290051.932382,
+    "seen": 1790291393.7660558,
+    "ast_hash": "76109347b6c316f41845d6283414dd37",
+    "semantic_hash": "76109347b6c316f41845d6283414dd37"
+  },
+  "src/components/Toast.tsx": {
+    "mtime": 1787534588.1355996,
+    "seen": 1790291393.766057,
+    "ast_hash": "4195211f98d1f3aca1cd6a3576434bb8",
+    "semantic_hash": "4195211f98d1f3aca1cd6a3576434bb8"
+  },
+  "src/data/aiModels.ts": {
+    "mtime": 1787534588.1357179,
+    "seen": 1790291393.766057,
+    "ast_hash": "4e00228a57be8bbc10d5e772639dee9e",
+    "semantic_hash": "4e00228a57be8bbc10d5e772639dee9e"
+  },
+  "src/data/defaultCategories.ts": {
+    "mtime": 1787534588.1357973,
+    "seen": 1790291393.766058,
+    "ast_hash": "61ef3df06a671c0707655a6f1e24125e",
+    "semantic_hash": "61ef3df06a671c0707655a6f1e24125e"
+  },
+  "src/data/initialPrompts.ts": {
+    "mtime": 1787534588.135915,
+    "seen": 1790291393.766059,
+    "ast_hash": "890200e3441a110c7aeab4abcb6015f3",
+    "semantic_hash": "890200e3441a110c7aeab4abcb6015f3"
+  },
+  "src/features/auth/LoginScreen.tsx": {
+    "mtime": 1790290051.9325356,
+    "seen": 1790291393.766059,
+    "ast_hash": "397652b43b45ec8f38534a0ae2c6ea84",
+    "semantic_hash": "397652b43b45ec8f38534a0ae2c6ea84"
+  },
+  "src/features/categories/CategoryManagerModal.tsx": {
+    "mtime": 1787534588.1361468,
+    "seen": 1790291393.76606,
+    "ast_hash": "b63142aa73a91f6c3a3be103b1ed67d3",
+    "semantic_hash": "b63142aa73a91f6c3a3be103b1ed67d3"
+  },
+  "src/features/library/PromptCard.tsx": {
+    "mtime": 1787534588.136472,
+    "seen": 1790291393.766061,
+    "ast_hash": "c9b533d991d4b132985c67c8605dfeb1",
+    "semantic_hash": "c9b533d991d4b132985c67c8605dfeb1"
+  },
+  "src/features/library/PromptFilters.tsx": {
+    "mtime": 1787534588.1367629,
+    "seen": 1790291393.766061,
+    "ast_hash": "997b8457f2cf274d6c86ee946d9115b7",
+    "semantic_hash": "997b8457f2cf274d6c86ee946d9115b7"
+  },
+  "src/features/library/PromptGrid.tsx": {
+    "mtime": 1787534588.1368866,
+    "seen": 1790291393.766062,
+    "ast_hash": "b2694e7f225728646805cafc64a15f7e",
+    "semantic_hash": "b2694e7f225728646805cafc64a15f7e"
+  },
+  "src/features/library/PromptTableView.tsx": {
+    "mtime": 1787534588.1369908,
+    "seen": 1790291393.7660632,
+    "ast_hash": "4ce272ecc5efefd2b6ad23d0de71a9d1",
+    "semantic_hash": "4ce272ecc5efefd2b6ad23d0de71a9d1"
+  },
+  "src/features/prompts/PromptDetailModal.tsx": {
+    "mtime": 1790134842.1160967,
+    "seen": 1790291393.7660632,
+    "ast_hash": "ae13bb32c219f6485f20d7d4837a25aa",
+    "semantic_hash": "ae13bb32c219f6485f20d7d4837a25aa"
+  },
+  "src/features/prompts/PromptFormModal.tsx": {
+    "mtime": 1787534588.1372652,
+    "seen": 1790291393.7660642,
+    "ast_hash": "231d3ecc42d4fae7994ad2a6e87260d3",
+    "semantic_hash": "231d3ecc42d4fae7994ad2a6e87260d3"
+  },
+  "src/features/search/SearchBar.tsx": {
+    "mtime": 1787534588.1377292,
+    "seen": 1790291393.766065,
+    "ast_hash": "80137ccf17d7cb1b853f6ebf39f8d5a0",
+    "semantic_hash": "80137ccf17d7cb1b853f6ebf39f8d5a0"
+  },
+  "src/features/workspace/WorkspaceImportModal.tsx": {
+    "mtime": 1788329215.5369844,
+    "seen": 1790291393.766065,
+    "ast_hash": "7b91a31bb291bdb801387b7f7de73496",
+    "semantic_hash": "7b91a31bb291bdb801387b7f7de73496"
+  },
+  "src/main.tsx": {
+    "mtime": 1787534588.1380856,
+    "seen": 1790291393.7660658,
+    "ast_hash": "2b36426d5ad7e08ef79746aa524f4fb7",
+    "semantic_hash": "2b36426d5ad7e08ef79746aa524f4fb7"
+  },
+  "src/services/api.ts": {
+    "mtime": 1790290051.9327204,
+    "seen": 1790291393.766067,
+    "ast_hash": "274361538cbff3c2e878e272f33dd078",
+    "semantic_hash": "274361538cbff3c2e878e272f33dd078"
+  },
+  "src/services/firebase.ts": {
+    "mtime": 1790134842.1164644,
+    "seen": 1790291393.766068,
+    "ast_hash": "3445758bbe1aacf6c76aef38da8ee1cb",
+    "semantic_hash": "3445758bbe1aacf6c76aef38da8ee1cb"
+  },
+  "src/services/firebaseAuth.ts": {
+    "mtime": 1790290051.9328558,
+    "seen": 1790291393.766068,
+    "ast_hash": "623db062814a69ffc9d22707041f63fe",
+    "semantic_hash": "623db062814a69ffc9d22707041f63fe"
+  },
+  "src/types/index.ts": {
+    "mtime": 1788329215.5373046,
+    "seen": 1790291393.766069,
+    "ast_hash": "1b7cf44f9d665a1449427c63b771f845",
+    "semantic_hash": "1b7cf44f9d665a1449427c63b771f845"
+  },
+  "src/utils/clipboard.ts": {
+    "mtime": 1787534588.1386135,
+    "seen": 1790291393.7660701,
+    "ast_hash": "f6c83ad5065031f65a18ecad36c86536",
+    "semantic_hash": "f6c83ad5065031f65a18ecad36c86536"
+  },
+  "src/utils/export.ts": {
+    "mtime": 1790134842.1167083,
+    "seen": 1790291393.7660701,
+    "ast_hash": "04e6471137ff88aa6c5943a3dfb16e5f",
+    "semantic_hash": "04e6471137ff88aa6c5943a3dfb16e5f"
+  },
+  "src/utils/formatters.ts": {
+    "mtime": 1787534588.138697,
+    "seen": 1790291393.766071,
+    "ast_hash": "ee53c6d9fb792445ef327dba0237d84c",
+    "semantic_hash": "ee53c6d9fb792445ef327dba0237d84c"
+  },
+  "src/vite-env.d.ts": {
+    "mtime": 1787534588.1387782,
+    "seen": 1790291393.766072,
+    "ast_hash": "e0839af7c2880f5593a0de45245d3fad",
+    "semantic_hash": "e0839af7c2880f5593a0de45245d3fad"
+  },
+  "tests/api-persistence.test.ts": {
+    "mtime": 1790290051.933003,
+    "seen": 1790291393.766072,
+    "ast_hash": "b6d1ecd1bd88305c8db4e9292a80868e",
+    "semantic_hash": "b6d1ecd1bd88305c8db4e9292a80868e"
+  },
+  "tests/auth.test.ts": {
+    "mtime": 1790290051.93309,
+    "seen": 1790291393.766073,
+    "ast_hash": "827e31d41286127ddd373fcf87b02a2c",
+    "semantic_hash": "827e31d41286127ddd373fcf87b02a2c"
+  },
+  "tests/firestore-durable.test.ts": {
+    "mtime": 1790134842.1175215,
+    "seen": 1790291393.7660742,
+    "ast_hash": "7377f3224aa9d24736a29230746a657f",
+    "semantic_hash": "7377f3224aa9d24736a29230746a657f"
+  },
+  "tests/persistence.test.ts": {
+    "mtime": 1790134842.1179745,
+    "seen": 1790291393.766075,
+    "ast_hash": "c788782955be3dcf45a0f5b461e201dc",
+    "semantic_hash": "c788782955be3dcf45a0f5b461e201dc"
+  },
+  "tests/provider-selection.test.ts": {
+    "mtime": 1790159326.8185492,
+    "seen": 1790291393.766075,
+    "ast_hash": "c958704be06b1a1da111a14fa713eea1",
+    "semantic_hash": "c958704be06b1a1da111a14fa713eea1"
+  },
+  "tsconfig.json": {
+    "mtime": 1787534588.1388621,
+    "seen": 1790291393.7660758,
+    "ast_hash": "f10037d83d82d68549b75b89e817f6a6",
+    "semantic_hash": "f10037d83d82d68549b75b89e817f6a6"
+  },
+  "vite.config.ts": {
+    "mtime": 1787536925.623043,
+    "seen": 1790291393.7660758,
+    "ast_hash": "f69261f36823cdca4d59c0d017f37f96",
+    "semantic_hash": "f69261f36823cdca4d59c0d017f37f96"
+  },
+  "AGENTS.md": {
+    "mtime": 1789077936.1012874,
+    "seen": 1790291393.766077,
+    "ast_hash": "22baa52e0c967a99ce5b7ad3431f48b5",
+    "semantic_hash": "22baa52e0c967a99ce5b7ad3431f48b5"
+  },
+  "README.md": {
+    "mtime": 1790290051.930609,
+    "seen": 1790291393.766078,
+    "ast_hash": "f0b7937fb5486540c57671ada5367076",
+    "semantic_hash": "f0b7937fb5486540c57671ada5367076"
+  },
+  "agent/skills/google-cloud-waf-security/SKILL.md": {
+    "mtime": 1789080609.075387,
+    "seen": 1790291393.766078,
+    "ast_hash": "440d538559d4efea51974eadc5d20bfd",
+    "semantic_hash": "440d538559d4efea51974eadc5d20bfd"
+  },
+  "agent/skills/retrieving-developer-knowledge/SKILL.md": {
+    "mtime": 1789080609.0756216,
+    "seen": 1790291393.766079,
+    "ast_hash": "b1c2522203da842dee017688068c2218",
+    "semantic_hash": "b1c2522203da842dee017688068c2218"
+  },
+  "artifacts/AGENT-IDE-PROMPT.md": {
+    "mtime": 1789087870.0,
+    "seen": 1790291393.76608,
+    "ast_hash": "d10c5206be47ff2fc78b69e66ad2e8fc",
+    "semantic_hash": "d10c5206be47ff2fc78b69e66ad2e8fc"
+  },
+  "artifacts/AUDIT-REPORT.md": {
+    "mtime": 1789087870.0,
+    "seen": 1790291393.766081,
+    "ast_hash": "ab0d84a0a7ce7a62af920ea6b44eb13b",
+    "semantic_hash": "ab0d84a0a7ce7a62af920ea6b44eb13b"
+  },
+  "artifacts/implementation_plan.md": {
+    "mtime": 1788326086.723714,
+    "seen": 1790291393.766081,
+    "ast_hash": "f5e2d7e57b6205cd543fa0fa02a33a1a",
+    "semantic_hash": "f5e2d7e57b6205cd543fa0fa02a33a1a"
+  },
+  "artifacts/task_list.md": {
+    "mtime": 1788326086.7239265,
+    "seen": 1790291393.766082,
+    "ast_hash": "be2571f39c340790bdf7ac26dd28f368",
+    "semantic_hash": "be2571f39c340790bdf7ac26dd28f368"
+  }
+}
