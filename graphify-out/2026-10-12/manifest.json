@@ -1,0 +1,962 @@
+{
+  ".mcp.json": {
+    "mtime": 1790309580.8562434,
+    "seen": 1790320111.344956,
+    "ast_hash": "51fa4470dd28b56943bc4f0c9626b1fb",
+    "semantic_hash": "51fa4470dd28b56943bc4f0c9626b1fb"
+  },
+  "data/categories.json": {
+    "mtime": 1790309580.8603828,
+    "seen": 1790320111.344961,
+    "ast_hash": "99289fcfc9a6841195e176db9529094a",
+    "semantic_hash": "99289fcfc9a6841195e176db9529094a"
+  },
+  "data/prompts.json": {
+    "mtime": 1790309580.8605273,
+    "seen": 1790320111.3449621,
+    "ast_hash": "ea266f6a8ca330edf3fec37040853982",
+    "semantic_hash": "ea266f6a8ca330edf3fec37040853982"
+  },
+  "firebase-applet-config.json": {
+    "mtime": 1790309580.8606348,
+    "seen": 1790320111.344963,
+    "ast_hash": "9b8c6a5c05a7871478a5ca019c0ee979",
+    "semantic_hash": ""
+  },
+  "firebase-blueprint.json": {
+    "mtime": 1790309580.8607385,
+    "seen": 1790320111.344964,
+    "ast_hash": "7336b232e582d24f830de608fbdcdea3",
+    "semantic_hash": "7336b232e582d24f830de608fbdcdea3"
+  },
+  "firebase.json": {
+    "mtime": 1790309580.860842,
+    "seen": 1790320111.3449652,
+    "ast_hash": "94144df9ba66ac7908025332caa17460",
+    "semantic_hash": "94144df9ba66ac7908025332caa17460"
+  },
+  "metadata.json": {
+    "mtime": 1790309580.86883,
+    "seen": 1790320111.344966,
+    "ast_hash": "67fc8e3ef431b163cdd13ba91bc8bf2e",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1790313982.6818113,
+    "seen": 1790320111.344967,
+    "ast_hash": "461f41a8e011e3c7aada5cc2e7f2934a",
+    "semantic_hash": ""
+  },
+  "scripts/build-server.js": {
+    "mtime": 1790309580.8694105,
+    "seen": 1790320111.3449678,
+    "ast_hash": "dccf6bbb7658405eb9e2c38b47e8abb7",
+    "semantic_hash": "dccf6bbb7658405eb9e2c38b47e8abb7"
+  },
+  "server.ts": {
+    "mtime": 1790309580.869545,
+    "seen": 1790320111.3449678,
+    "ast_hash": "a8ff047b0ff2ebb6e78fa22411e546ac",
+    "semantic_hash": ""
+  },
+  "server/ai/gemini.ts": {
+    "mtime": 1790309580.8697433,
+    "seen": 1790320111.344969,
+    "ast_hash": "33030141b1ea404a1781649368ba15f8",
+    "semantic_hash": "33030141b1ea404a1781649368ba15f8"
+  },
+  "server/ai/promptAnalyzer.ts": {
+    "mtime": 1790309580.8698719,
+    "seen": 1790320111.34497,
+    "ast_hash": "03a3fd89f8b1edc8e8e5fc1501c0b19e",
+    "semantic_hash": "03a3fd89f8b1edc8e8e5fc1501c0b19e"
+  },
+  "server/firebase/admin.ts": {
+    "mtime": 1790312474.3293161,
+    "seen": 1790320111.344971,
+    "ast_hash": "b5dcba5fd469b194b6f204cea1890915",
+    "semantic_hash": ""
+  },
+  "server/prompts/storage.ts": {
+    "mtime": 1790309580.870128,
+    "seen": 1790320111.3449721,
+    "ast_hash": "bc19fb0248ba35459114ee1073fbf7a0",
+    "semantic_hash": "bc19fb0248ba35459114ee1073fbf7a0"
+  },
+  "server/repositories/filePromptRepository.ts": {
+    "mtime": 1790309580.870696,
+    "seen": 1790320111.3449721,
+    "ast_hash": "c336301ea08d56df841bce616bba6311",
+    "semantic_hash": "c336301ea08d56df841bce616bba6311"
+  },
+  "server/repositories/firestorePromptRepository.ts": {
+    "mtime": 1790312474.3311448,
+    "seen": 1790320111.344973,
+    "ast_hash": "d3bc4ed3edc9fa485412c68543f21490",
+    "semantic_hash": ""
+  },
+  "server/repositories/index.ts": {
+    "mtime": 1790312474.3318577,
+    "seen": 1790320111.344974,
+    "ast_hash": "3290f0c5f06fe041677c36086a64f3bb",
+    "semantic_hash": ""
+  },
+  "server/repositories/promptRepository.ts": {
+    "mtime": 1790309580.8710065,
+    "seen": 1790320111.344975,
+    "ast_hash": "8bbaa8220e5adf7e72b2671fae79ff1c",
+    "semantic_hash": "8bbaa8220e5adf7e72b2671fae79ff1c"
+  },
+  "server/storage/imageStore.ts": {
+    "mtime": 1790312474.3333635,
+    "seen": 1790320111.344975,
+    "ast_hash": "17c8740122b2deac5c5a12b052cc00ea",
+    "semantic_hash": ""
+  },
+  "server/validation/aiAnalysisSchema.ts": {
+    "mtime": 1790309580.8713367,
+    "seen": 1790320111.344976,
+    "ast_hash": "22fab79a5977908247c8e1b00840e731",
+    "semantic_hash": "22fab79a5977908247c8e1b00840e731"
+  },
+  "server/validation/authMiddleware.ts": {
+    "mtime": 1790309580.8714185,
+    "seen": 1790320111.344977,
+    "ast_hash": "ad0eca5e4ebd41760781945ec5dfc4d9",
+    "semantic_hash": ""
+  },
+  "server/validation/promptSchema.ts": {
+    "mtime": 1790309580.8714962,
+    "seen": 1790320111.3449779,
+    "ast_hash": "48fc63602a003d3f547f183d7fd028ab",
+    "semantic_hash": "48fc63602a003d3f547f183d7fd028ab"
+  },
+  "server/workspace/googleWorkspaceService.ts": {
+    "mtime": 1790309580.8716722,
+    "seen": 1790320111.344979,
+    "ast_hash": "c6712f3f0fe49d4b6702ea9cbeb66bc3",
+    "semantic_hash": "c6712f3f0fe49d4b6702ea9cbeb66bc3"
+  },
+  "skills-lock.json": {
+    "mtime": 1790317931.1488225,
+    "seen": 1790320111.344979,
+    "ast_hash": "c68a3f0c5c68d82b8ca4021950f944ca",
+    "semantic_hash": ""
+  },
+  "src/App.tsx": {
+    "mtime": 1790309580.871983,
+    "seen": 1790320111.34498,
+    "ast_hash": "5af7cdbf4293f436ade7e02d6889ccd7",
+    "semantic_hash": ""
+  },
+  "src/components/AppIcon.tsx": {
+    "mtime": 1790309580.872149,
+    "seen": 1790320111.344981,
+    "ast_hash": "998b870c0690206a2fbcaa9675129d17",
+    "semantic_hash": "998b870c0690206a2fbcaa9675129d17"
+  },
+  "src/components/ConfirmDialog.tsx": {
+    "mtime": 1790309580.872345,
+    "seen": 1790320111.344982,
+    "ast_hash": "bdeb28e0e1cb38eee1b28bd5595e6c56",
+    "semantic_hash": "bdeb28e0e1cb38eee1b28bd5595e6c56"
+  },
+  "src/components/ImagePreviewModal.tsx": {
+    "mtime": 1790309580.8724396,
+    "seen": 1790320111.344983,
+    "ast_hash": "8520aff16e41804ff637c645cdd1140e",
+    "semantic_hash": "8520aff16e41804ff637c645cdd1140e"
+  },
+  "src/components/Navbar.tsx": {
+    "mtime": 1790309580.8726084,
+    "seen": 1790320111.344983,
+    "ast_hash": "76109347b6c316f41845d6283414dd37",
+    "semantic_hash": "76109347b6c316f41845d6283414dd37"
+  },
+  "src/components/Toast.tsx": {
+    "mtime": 1790309580.8727045,
+    "seen": 1790320111.344984,
+    "ast_hash": "4195211f98d1f3aca1cd6a3576434bb8",
+    "semantic_hash": "4195211f98d1f3aca1cd6a3576434bb8"
+  },
+  "src/data/aiModels.ts": {
+    "mtime": 1790309580.8728564,
+    "seen": 1790320111.344985,
+    "ast_hash": "4e00228a57be8bbc10d5e772639dee9e",
+    "semantic_hash": "4e00228a57be8bbc10d5e772639dee9e"
+  },
+  "src/data/defaultCategories.ts": {
+    "mtime": 1790309580.8729482,
+    "seen": 1790320111.3449862,
+    "ast_hash": "61ef3df06a671c0707655a6f1e24125e",
+    "semantic_hash": "61ef3df06a671c0707655a6f1e24125e"
+  },
+  "src/data/initialPrompts.ts": {
+    "mtime": 1790309580.8730857,
+    "seen": 1790320111.344987,
+    "ast_hash": "890200e3441a110c7aeab4abcb6015f3",
+    "semantic_hash": "890200e3441a110c7aeab4abcb6015f3"
+  },
+  "src/features/auth/LoginScreen.tsx": {
+    "mtime": 1790309580.8732693,
+    "seen": 1790320111.344987,
+    "ast_hash": "397652b43b45ec8f38534a0ae2c6ea84",
+    "semantic_hash": "397652b43b45ec8f38534a0ae2c6ea84"
+  },
+  "src/features/categories/CategoryManagerModal.tsx": {
+    "mtime": 1790309580.8734539,
+    "seen": 1790320111.3449879,
+    "ast_hash": "b63142aa73a91f6c3a3be103b1ed67d3",
+    "semantic_hash": "b63142aa73a91f6c3a3be103b1ed67d3"
+  },
+  "src/features/library/PromptCard.tsx": {
+    "mtime": 1790309580.8736646,
+    "seen": 1790320111.3449888,
+    "ast_hash": "c9b533d991d4b132985c67c8605dfeb1",
+    "semantic_hash": "c9b533d991d4b132985c67c8605dfeb1"
+  },
+  "src/features/library/PromptFilters.tsx": {
+    "mtime": 1790309580.8737917,
+    "seen": 1790320111.34499,
+    "ast_hash": "997b8457f2cf274d6c86ee946d9115b7",
+    "semantic_hash": "997b8457f2cf274d6c86ee946d9115b7"
+  },
+  "src/features/library/PromptGrid.tsx": {
+    "mtime": 1790309580.8738954,
+    "seen": 1790320111.34499,
+    "ast_hash": "b2694e7f225728646805cafc64a15f7e",
+    "semantic_hash": "b2694e7f225728646805cafc64a15f7e"
+  },
+  "src/features/library/PromptTableView.tsx": {
+    "mtime": 1790309580.8740048,
+    "seen": 1790320111.344991,
+    "ast_hash": "4ce272ecc5efefd2b6ad23d0de71a9d1",
+    "semantic_hash": "4ce272ecc5efefd2b6ad23d0de71a9d1"
+  },
+  "src/features/prompts/PromptDetailModal.tsx": {
+    "mtime": 1790309580.8741524,
+    "seen": 1790320111.344992,
+    "ast_hash": "ae13bb32c219f6485f20d7d4837a25aa",
+    "semantic_hash": "ae13bb32c219f6485f20d7d4837a25aa"
+  },
+  "src/features/prompts/PromptFormModal.tsx": {
+    "mtime": 1790309580.874297,
+    "seen": 1790320111.344993,
+    "ast_hash": "231d3ecc42d4fae7994ad2a6e87260d3",
+    "semantic_hash": "231d3ecc42d4fae7994ad2a6e87260d3"
+  },
+  "src/features/search/SearchBar.tsx": {
+    "mtime": 1790309580.8744488,
+    "seen": 1790320111.344993,
+    "ast_hash": "80137ccf17d7cb1b853f6ebf39f8d5a0",
+    "semantic_hash": "80137ccf17d7cb1b853f6ebf39f8d5a0"
+  },
+  "src/features/workspace/WorkspaceImportModal.tsx": {
+    "mtime": 1790309580.8746016,
+    "seen": 1790320111.344994,
+    "ast_hash": "a4bfc8b27b4951cbde074be977a64f0c",
+    "semantic_hash": ""
+  },
+  "src/main.tsx": {
+    "mtime": 1790309580.8751163,
+    "seen": 1790320111.344995,
+    "ast_hash": "2b36426d5ad7e08ef79746aa524f4fb7",
+    "semantic_hash": "2b36426d5ad7e08ef79746aa524f4fb7"
+  },
+  "src/services/api.ts": {
+    "mtime": 1790309580.8753307,
+    "seen": 1790320111.3449962,
+    "ast_hash": "b97b7c9cc215d04ac28bb97579101039",
+    "semantic_hash": ""
+  },
+  "src/services/firebase.ts": {
+    "mtime": 1790309580.8754284,
+    "seen": 1790320111.3449962,
+    "ast_hash": "3445758bbe1aacf6c76aef38da8ee1cb",
+    "semantic_hash": "3445758bbe1aacf6c76aef38da8ee1cb"
+  },
+  "src/services/firebaseAuth.ts": {
+    "mtime": 1790309580.8755193,
+    "seen": 1790320111.3449972,
+    "ast_hash": "4efd48fb7e9cd1e9aa096e4d98a23a46",
+    "semantic_hash": ""
+  },
+  "src/types/index.ts": {
+    "mtime": 1790309580.8756676,
+    "seen": 1790320111.344998,
+    "ast_hash": "1b7cf44f9d665a1449427c63b771f845",
+    "semantic_hash": "1b7cf44f9d665a1449427c63b771f845"
+  },
+  "src/utils/clipboard.ts": {
+    "mtime": 1790309580.8758056,
+    "seen": 1790320111.3449988,
+    "ast_hash": "f6c83ad5065031f65a18ecad36c86536",
+    "semantic_hash": "f6c83ad5065031f65a18ecad36c86536"
+  },
+  "src/utils/export.ts": {
+    "mtime": 1790309580.8759305,
+    "seen": 1790320111.345,
+    "ast_hash": "04e6471137ff88aa6c5943a3dfb16e5f",
+    "semantic_hash": "04e6471137ff88aa6c5943a3dfb16e5f"
+  },
+  "src/utils/formatters.ts": {
+    "mtime": 1790309580.8760245,
+    "seen": 1790320111.345001,
+    "ast_hash": "ee53c6d9fb792445ef327dba0237d84c",
+    "semantic_hash": "ee53c6d9fb792445ef327dba0237d84c"
+  },
+  "src/vite-env.d.ts": {
+    "mtime": 1790309580.8761103,
+    "seen": 1790320111.345001,
+    "ast_hash": "e0839af7c2880f5593a0de45245d3fad",
+    "semantic_hash": "e0839af7c2880f5593a0de45245d3fad"
+  },
+  "tests/api-persistence.test.ts": {
+    "mtime": 1790309580.876277,
+    "seen": 1790320111.345002,
+    "ast_hash": "b6d1ecd1bd88305c8db4e9292a80868e",
+    "semantic_hash": "b6d1ecd1bd88305c8db4e9292a80868e"
+  },
+  "tests/auth.test.ts": {
+    "mtime": 1790309580.876498,
+    "seen": 1790320111.345003,
+    "ast_hash": "827e31d41286127ddd373fcf87b02a2c",
+    "semantic_hash": "827e31d41286127ddd373fcf87b02a2c"
+  },
+  "tests/firestore-durable.test.ts": {
+    "mtime": 1790309580.87663,
+    "seen": 1790320111.345004,
+    "ast_hash": "7377f3224aa9d24736a29230746a657f",
+    "semantic_hash": "7377f3224aa9d24736a29230746a657f"
+  },
+  "tests/persistence.test.ts": {
+    "mtime": 1790309580.8767838,
+    "seen": 1790320111.345004,
+    "ast_hash": "c788782955be3dcf45a0f5b461e201dc",
+    "semantic_hash": "c788782955be3dcf45a0f5b461e201dc"
+  },
+  "tests/provider-selection.test.ts": {
+    "mtime": 1790317855.9725919,
+    "seen": 1790320111.345005,
+    "ast_hash": "cd226c6364355cb445752ba50e5679e7",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1790309580.8770099,
+    "seen": 1790320111.345006,
+    "ast_hash": "f10037d83d82d68549b75b89e817f6a6",
+    "semantic_hash": "f10037d83d82d68549b75b89e817f6a6"
+  },
+  "vite.config.ts": {
+    "mtime": 1790309580.8817108,
+    "seen": 1790320111.345006,
+    "ast_hash": "f69261f36823cdca4d59c0d017f37f96",
+    "semantic_hash": "f69261f36823cdca4d59c0d017f37f96"
+  },
+  "AGENTS.md": {
+    "mtime": 1790317759.7654083,
+    "seen": 1790320111.3450549,
+    "ast_hash": "475d3b81219571d6cf7886bc04783368",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1790309580.8567197,
+    "seen": 1790320111.345056,
+    "ast_hash": "f0b7937fb5486540c57671ada5367076",
+    "semantic_hash": "f0b7937fb5486540c57671ada5367076"
+  },
+  "agent/skills/google-cloud-waf-security/SKILL.md": {
+    "mtime": 1790309580.8586793,
+    "seen": 1790320111.345068,
+    "ast_hash": "440d538559d4efea51974eadc5d20bfd",
+    "semantic_hash": "440d538559d4efea51974eadc5d20bfd"
+  },
+  "agent/skills/retrieving-developer-knowledge/SKILL.md": {
+    "mtime": 1790309580.859028,
+    "seen": 1790320111.345068,
+    "ast_hash": "b1c2522203da842dee017688068c2218",
+    "semantic_hash": "b1c2522203da842dee017688068c2218"
+  },
+  "artifacts/AGENT-IDE-PROMPT.md": {
+    "mtime": 1790309580.8595145,
+    "seen": 1790320111.345072,
+    "ast_hash": "d10c5206be47ff2fc78b69e66ad2e8fc",
+    "semantic_hash": "d10c5206be47ff2fc78b69e66ad2e8fc"
+  },
+  "artifacts/AUDIT-REPORT.md": {
+    "mtime": 1790309580.859603,
+    "seen": 1790320111.345072,
+    "ast_hash": "ab0d84a0a7ce7a62af920ea6b44eb13b",
+    "semantic_hash": "ab0d84a0a7ce7a62af920ea6b44eb13b"
+  },
+  "artifacts/implementation_plan.md": {
+    "mtime": 1790309580.8597097,
+    "seen": 1790320111.345073,
+    "ast_hash": "f5e2d7e57b6205cd543fa0fa02a33a1a",
+    "semantic_hash": "f5e2d7e57b6205cd543fa0fa02a33a1a"
+  },
+  "artifacts/task_list.md": {
+    "mtime": 1790309580.85979,
+    "seen": 1790320111.345074,
+    "ast_hash": "be2571f39c340790bdf7ac26dd28f368",
+    "semantic_hash": "be2571f39c340790bdf7ac26dd28f368"
+  },
+  ".agents/agents/api-domain-specialist.md": {
+    "mtime": 1790317639.304869,
+    "seen": 1790320111.3450081,
+    "ast_hash": "3bb2c337ceec3b8cc31f3303632653d5",
+    "semantic_hash": ""
+  },
+  ".agents/agents/frontend-specialist.md": {
+    "mtime": 1790317649.831505,
+    "seen": 1790320111.3450089,
+    "ast_hash": "01aa44f271fef503ca8422e1204c524a",
+    "semantic_hash": ""
+  },
+  ".agents/agents/gemini-ai-specialist.md": {
+    "mtime": 1790317661.1613715,
+    "seen": 1790320111.3450089,
+    "ast_hash": "cb82cffaa458f2dadec6fde9a2a6c319",
+    "semantic_hash": ""
+  },
+  ".agents/agents/project-orchestrator.md": {
+    "mtime": 1790317577.3359442,
+    "seen": 1790320111.3450098,
+    "ast_hash": "1ff8b37d274c0dd312f8614fa5653768",
+    "semantic_hash": ""
+  },
+  ".agents/agents/release-engineer.md": {
+    "mtime": 1790317673.1734767,
+    "seen": 1790320111.345011,
+    "ast_hash": "9b9c6403b26b87392afa31b52e1ecfb6",
+    "semantic_hash": ""
+  },
+  ".agents/agents/security-auditor.md": {
+    "mtime": 1790317684.1979468,
+    "seen": 1790320111.345012,
+    "ast_hash": "386e229608b5408a5fcf9218c2c592a0",
+    "semantic_hash": ""
+  },
+  ".agents/mother-brain/README.md": {
+    "mtime": 1790309580.8516612,
+    "seen": 1790320111.345012,
+    "ast_hash": "078cd47ea185ffe3e9490166a29237c4",
+    "semantic_hash": ""
+  },
+  ".agents/mother-brain/project.yaml": {
+    "mtime": 1790315746.5277088,
+    "seen": 1790320111.345013,
+    "ast_hash": "ab8f917cd3d403220c241ba594e8bded",
+    "semantic_hash": ""
+  },
+  ".agents/skills/app-security/SKILL.md": {
+    "mtime": 1790309580.851922,
+    "seen": 1790320111.345014,
+    "ast_hash": "6404e5d7a8896b08d27bb6850050b318",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/SKILL.md": {
+    "mtime": 1790312288.7421274,
+    "seen": 1790320111.345015,
+    "ast_hash": "84531339ca02848dbd9e366e12979e1d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/cli-usage.md": {
+    "mtime": 1790312288.742405,
+    "seen": 1790320111.345015,
+    "ast_hash": "5a1da709d0e8d784543addb92d15387a",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/client-library-usage.md": {
+    "mtime": 1790312288.7424054,
+    "seen": 1790320111.345016,
+    "ast_hash": "02ba2173559854ad927ed20cf66e1937",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/core-concepts.md": {
+    "mtime": 1790312288.7424395,
+    "seen": 1790320111.3450172,
+    "ast_hash": "c3fc2915770d747e53fd8712eabff5ec",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/iac-usage.md": {
+    "mtime": 1790312288.7424607,
+    "seen": 1790320111.3450181,
+    "ast_hash": "3c3d2831103613973a159504bdafe156",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/iam-security.md": {
+    "mtime": 1790312288.7426577,
+    "seen": 1790320111.3450181,
+    "ast_hash": "31b07fcd39496e70341186412065a3e9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/mcp-usage.md": {
+    "mtime": 1790312288.7426298,
+    "seen": 1790320111.3450189,
+    "ast_hash": "4815450234f25e79cd83de635d1e73f3",
+    "semantic_hash": ""
+  },
+  ".agents/skills/cloud-run-basics/references/networking.md": {
+    "mtime": 1790312288.7426624,
+    "seen": 1790320111.3450198,
+    "ast_hash": "767215c91099825f00e7aa257b4a45e0",
+    "semantic_hash": ""
+  },
+  ".agents/skills/deployment-audit/SKILL.md": {
+    "mtime": 1790309580.8530512,
+    "seen": 1790320111.3450198,
+    "ast_hash": "bd255381ad7dde8673fd1c6840cb339f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/express-api-contracts/SKILL.md": {
+    "mtime": 1790309580.853201,
+    "seen": 1790320111.345021,
+    "ast_hash": "34be6b9d9db0f24e6c92547fdf6fb796",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-auth-basics/SKILL.md": {
+    "mtime": 1790312299.9677703,
+    "seen": 1790320111.345023,
+    "ast_hash": "4d3477971b8a623cbc81b44f40a59ef1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-auth-basics/references/client_sdk_android.md": {
+    "mtime": 1790312299.9680169,
+    "seen": 1790320111.345024,
+    "ast_hash": "331f7f383395a2e21b90e0c7b8cdbfd8",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-auth-basics/references/client_sdk_web.md": {
+    "mtime": 1790312299.9680471,
+    "seen": 1790320111.345025,
+    "ast_hash": "2e4a805d92133273720c6a742d972a1b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-auth-basics/references/flutter_setup.md": {
+    "mtime": 1790312299.9680486,
+    "seen": 1790320111.345025,
+    "ast_hash": "86f00d0b90230094f04b8ba9a194a780",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-auth-basics/references/ios_setup.md": {
+    "mtime": 1790312299.9681022,
+    "seen": 1790320111.345026,
+    "ast_hash": "77345c72e6f17d8301a9f5cd83d0d8f1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-auth-basics/references/security_rules.md": {
+    "mtime": 1790312299.96819,
+    "seen": 1790320111.345027,
+    "ast_hash": "a1bae907e096c634fd1d45148264523d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/SKILL.md": {
+    "mtime": 1790312305.15929,
+    "seen": 1790320111.3450282,
+    "ast_hash": "ffaf879f89d8cb99fec5840f3b8d0148",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/android_sdk_usage.md": {
+    "mtime": 1790312305.1606598,
+    "seen": 1790320111.3450282,
+    "ast_hash": "c1b697445ee54c6fd16163761b1d49a6",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/data_model.md": {
+    "mtime": 1790312305.1606395,
+    "seen": 1790320111.345029,
+    "ast_hash": "a180a21befe75f97daecc6f4a9e47530",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/flutter_setup.md": {
+    "mtime": 1790312305.1606405,
+    "seen": 1790320111.3450298,
+    "ast_hash": "194d3b7469fa0933f214862740088853",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/indexes.md": {
+    "mtime": 1790312305.1606405,
+    "seen": 1790320111.345031,
+    "ast_hash": "56bc0179350458d12b2eb654d9781466",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/ios_setup.md": {
+    "mtime": 1790312305.160863,
+    "seen": 1790320111.345031,
+    "ast_hash": "02dc51a9da86051d2192db4344c074fa",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/provisioning.md": {
+    "mtime": 1790312305.1609097,
+    "seen": 1790320111.345032,
+    "ast_hash": "d957d9b5bd28bbe536ba442d127b0635",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/python_sdk_usage.md": {
+    "mtime": 1790312305.1609228,
+    "seen": 1790320111.345033,
+    "ast_hash": "5a70b1cc54fef2f78492d0dbd2318be1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/enterprise/web_sdk_usage.md": {
+    "mtime": 1790312305.1609282,
+    "seen": 1790320111.345033,
+    "ast_hash": "fdfab1c5f53df47caf559ce50f9379aa",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/standard/android_sdk_usage.md": {
+    "mtime": 1790312305.161088,
+    "seen": 1790320111.345034,
+    "ast_hash": "f0cfdb2e668d5498d72a83c88aa0ca21",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/standard/flutter_setup.md": {
+    "mtime": 1790312305.1611571,
+    "seen": 1790320111.345035,
+    "ast_hash": "bb161d4112815587b67d4b82c4b7c2a9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/standard/indexes.md": {
+    "mtime": 1790312305.16118,
+    "seen": 1790320111.345036,
+    "ast_hash": "2cf2c89b0a0af4795b17bd2852fd4f7a",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/standard/ios_setup.md": {
+    "mtime": 1790312305.1612144,
+    "seen": 1790320111.345036,
+    "ast_hash": "43132eb0e239373703f68566ebf0a676",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/standard/provisioning.md": {
+    "mtime": 1790312305.1613255,
+    "seen": 1790320111.345037,
+    "ast_hash": "591f2d6b232e3aef7f0dfe2d1d597f09",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-firestore/references/standard/web_sdk_usage.md": {
+    "mtime": 1790312305.1613672,
+    "seen": 1790320111.3450382,
+    "ast_hash": "c7e06eedcdfebd8d1aca59611756bc7c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firebase-security-rules-auditor/SKILL.md": {
+    "mtime": 1790312310.3008757,
+    "seen": 1790320111.3450382,
+    "ast_hash": "8ed41c7682cb9f6a981d0cc9f66154ac",
+    "semantic_hash": ""
+  },
+  ".agents/skills/firestore-rules-creation/SKILL.md": {
+    "mtime": 1790312311.9822342,
+    "seen": 1790320111.3450391,
+    "ast_hash": "7864a3ec02c818338b7fd7fc4d66cfd9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/gcloud/SKILL.md": {
+    "mtime": 1790309580.853535,
+    "seen": 1790320111.3450398,
+    "ast_hash": "f87a6cecdbefb37c8a1b8ba72b6441ca",
+    "semantic_hash": ""
+  },
+  ".agents/skills/gcloud/references/cli-usage.md": {
+    "mtime": 1790309580.8536818,
+    "seen": 1790320111.3450408,
+    "ast_hash": "b2c19ec9520e9910b4fd46f1130f06b8",
+    "semantic_hash": ""
+  },
+  ".agents/skills/gcloud/references/mcp-usage.md": {
+    "mtime": 1790309580.853797,
+    "seen": 1790320111.3450408,
+    "ast_hash": "0756340fe7655685592c6146df256eea",
+    "semantic_hash": ""
+  },
+  ".agents/skills/gemini-multimodal-cataloging/SKILL.md": {
+    "mtime": 1790309580.853926,
+    "seen": 1790320111.345042,
+    "ast_hash": "8805a038d07a4276c632fa19fc818af2",
+    "semantic_hash": ""
+  },
+  ".agents/skills/google-cloud-recipe-auth/SKILL.md": {
+    "mtime": 1790309580.8541224,
+    "seen": 1790320111.345043,
+    "ast_hash": "9a6c3c31958398b3230e03be6187dcbe",
+    "semantic_hash": ""
+  },
+  ".agents/skills/google-cloud-waf-security/SKILL.md": {
+    "mtime": 1790312292.073842,
+    "seen": 1790320111.345044,
+    "ast_hash": "a6bd19ac26b1f0ab75ec998c0fa9f15a",
+    "semantic_hash": ""
+  },
+  ".agents/skills/persistence-adapters/SKILL.md": {
+    "mtime": 1790309580.8544452,
+    "seen": 1790320111.345044,
+    "ast_hash": "65a170b34a7224cbac9bc93c6118f3af",
+    "semantic_hash": ""
+  },
+  ".agents/skills/persistence-production/SKILL.md": {
+    "mtime": 1790309580.854604,
+    "seen": 1790320111.345045,
+    "ast_hash": "53a7d55d4bd6a25fe0caf076699db515",
+    "semantic_hash": ""
+  },
+  ".agents/skills/prompt-structured-output-validation/SKILL.md": {
+    "mtime": 1790317587.3498046,
+    "seen": 1790320111.345046,
+    "ast_hash": "6f783992745f4be5a7e14ea5a625ea2f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-vite-frontend/SKILL.md": {
+    "mtime": 1790309580.8547552,
+    "seen": 1790320111.345047,
+    "ast_hash": "81d4f19ca3d64073b49c3ce882c68444",
+    "semantic_hash": ""
+  },
+  ".agents/skills/test-selection/SKILL.md": {
+    "mtime": 1790317602.9022706,
+    "seen": 1790320111.345047,
+    "ast_hash": "1308244f5982d8c08d6774b1318f05bc",
+    "semantic_hash": ""
+  },
+  ".agents/skills/upload-security-review/SKILL.md": {
+    "mtime": 1790317594.4042492,
+    "seen": 1790320111.345048,
+    "ast_hash": "7fa3725c5060275c3b2ca343d9a2457a",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/bug.md": {
+    "mtime": 1790319932.244588,
+    "seen": 1790320111.3450491,
+    "ast_hash": "5523eab4807218de1f4aa87c16599d02",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/feature.md": {
+    "mtime": 1790319919.863077,
+    "seen": 1790320111.3450491,
+    "ast_hash": "de5b81149e1d8b22e1476f943596a095",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/quality.md": {
+    "mtime": 1790317727.2048025,
+    "seen": 1790320111.34505,
+    "ast_hash": "92b028134c5d190b43a4802499c2d8de",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/release.md": {
+    "mtime": 1790319909.5166557,
+    "seen": 1790320111.3450508,
+    "ast_hash": "b210842c08f80b0897342289c3b4b80c",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/test-and-deploy.md": {
+    "mtime": 1790319893.902196,
+    "seen": 1790320111.345052,
+    "ast_hash": "75f802654ce25afc65bbe33a4c2d6018",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/test.md": {
+    "mtime": 1790319896.343177,
+    "seen": 1790320111.345053,
+    "ast_hash": "82d59c0eb573e360d8e9ee59d65243aa",
+    "semantic_hash": ""
+  },
+  ".context/conventions.md": {
+    "mtime": 1790309580.85572,
+    "seen": 1790320111.345053,
+    "ast_hash": "b0fd7751dbcf514808530fa5e3aa6811",
+    "semantic_hash": ""
+  },
+  ".context/project-context.md": {
+    "mtime": 1790309580.855836,
+    "seen": 1790320111.345054,
+    "ast_hash": "81e583a96f5854795b331036f9b22d11",
+    "semantic_hash": ""
+  },
+  "SECURITY.md": {
+    "mtime": 1790309580.856809,
+    "seen": 1790320111.345057,
+    "ast_hash": "b1060e70aaff0e2baed6fc1d91ebe9b3",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/SKILL.md": {
+    "mtime": 1790309580.8570971,
+    "seen": 1790320111.345058,
+    "ast_hash": "e13e3c955f3de84f1c24c6d44514bc78",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/cli-usage.md": {
+    "mtime": 1790309580.857233,
+    "seen": 1790320111.3450592,
+    "ast_hash": "5a1da709d0e8d784543addb92d15387a",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/client-library-usage.md": {
+    "mtime": 1790309580.8573143,
+    "seen": 1790320111.3450592,
+    "ast_hash": "02ba2173559854ad927ed20cf66e1937",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/core-concepts.md": {
+    "mtime": 1790309580.8574185,
+    "seen": 1790320111.34506,
+    "ast_hash": "c3fc2915770d747e53fd8712eabff5ec",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/iac-usage.md": {
+    "mtime": 1790309580.85751,
+    "seen": 1790320111.345061,
+    "ast_hash": "3c3d2831103613973a159504bdafe156",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/iam-security.md": {
+    "mtime": 1790309580.85761,
+    "seen": 1790320111.3450618,
+    "ast_hash": "31b07fcd39496e70341186412065a3e9",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/mcp-usage.md": {
+    "mtime": 1790309580.8576891,
+    "seen": 1790320111.3450618,
+    "ast_hash": "4815450234f25e79cd83de635d1e73f3",
+    "semantic_hash": ""
+  },
+  "agent/skills/cloud-run-basics/references/networking.md": {
+    "mtime": 1790309580.8577878,
+    "seen": 1790320111.345063,
+    "ast_hash": "767215c91099825f00e7aa257b4a45e0",
+    "semantic_hash": ""
+  },
+  "agent/skills/finding-google-skills/SKILL.md": {
+    "mtime": 1790309580.8579466,
+    "seen": 1790320111.345064,
+    "ast_hash": "198493581ca8abc13807c76f1e708c46",
+    "semantic_hash": ""
+  },
+  "agent/skills/gcloud/SKILL.md": {
+    "mtime": 1790309580.8581066,
+    "seen": 1790320111.3450649,
+    "ast_hash": "4ca6fb58819e3665dbc335c54f4a16f1",
+    "semantic_hash": ""
+  },
+  "agent/skills/gcloud/references/cli-usage.md": {
+    "mtime": 1790309580.8582368,
+    "seen": 1790320111.3450649,
+    "ast_hash": "b2c19ec9520e9910b4fd46f1130f06b8",
+    "semantic_hash": ""
+  },
+  "agent/skills/gcloud/references/mcp-usage.md": {
+    "mtime": 1790309580.8583405,
+    "seen": 1790320111.345066,
+    "ast_hash": "0756340fe7655685592c6146df256eea",
+    "semantic_hash": ""
+  },
+  "agent/skills/google-cloud-recipe-auth/SKILL.md": {
+    "mtime": 1790309580.8585188,
+    "seen": 1790320111.345067,
+    "ast_hash": "72e4676d6b2d20a94ba6b6dee137b90e",
+    "semantic_hash": ""
+  },
+  "agent/skills/retrieving-developer-knowledge/references/api-fallback.md": {
+    "mtime": 1790309580.8591945,
+    "seen": 1790320111.3450692,
+    "ast_hash": "2c254fb5fecd2bad02f67112187e97a1",
+    "semantic_hash": ""
+  },
+  "agent/skills/retrieving-developer-knowledge/references/mcp-usage.md": {
+    "mtime": 1790309580.8592803,
+    "seen": 1790320111.3450701,
+    "ast_hash": "01a03d6421f3c7cb2fa9181ad5fc25a7",
+    "semantic_hash": ""
+  },
+  "agent/skills/retrieving-developer-knowledge/references/supported-domains.md": {
+    "mtime": 1790309580.8593674,
+    "seen": 1790320111.345071,
+    "ast_hash": "9d2c6f3129e883bba6f180a253b48ad4",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1790309580.868751,
+    "seen": 1790320111.345075,
+    "ast_hash": "a743cfd8c3275e224b631fa6eab20514",
+    "semantic_hash": ""
+  },
+  "pnpm-workspace.yaml": {
+    "mtime": 1790309580.8689985,
+    "seen": 1790320111.345076,
+    "ast_hash": "67d45a1ad332e1cde1359cabca21e1e2",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1790309580.869163,
+    "seen": 1790320111.345077,
+    "ast_hash": "433e362b4ed1e850df1f67c05ed6fd7f",
+    "semantic_hash": ""
+  },
+  "public/icon.svg": {
+    "mtime": 1790309580.869263,
+    "seen": 1790320111.345077,
+    "ast_hash": "63d30a5e46aa90473e36bec3eee15aa5",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328596665-36_-_Mudan_a_de_ilumina__o_png.png": {
+    "mtime": 1790309580.8778908,
+    "seen": 1790320111.345078,
+    "ast_hash": "a7017a9655d4539254e81275691eb0f7",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328612225-13_-_Full_body_shot_jpg.jpg": {
+    "mtime": 1790309580.8780937,
+    "seen": 1790320111.345079,
+    "ast_hash": "40729ed53b399f0a125036aabe7325ce",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328633378-14_-_Close-up_shot_jpg.jpg": {
+    "mtime": 1790309580.8782513,
+    "seen": 1790320111.3450801,
+    "ast_hash": "29186f6da1050e003322bdd13864461b",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328658025-15_-_Extreme_long_shot_jpg.jpg": {
+    "mtime": 1790309580.8783855,
+    "seen": 1790320111.3450801,
+    "ast_hash": "dee4a85bd25be18435e2a08fde1d8916",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328665433-16_-_High_angle_shot_jpg.jpg": {
+    "mtime": 1790309580.8785486,
+    "seen": 1790320111.345081,
+    "ast_hash": "1eafd9541340fb2cff49cd896fc87d33",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328666165-17_-_Low_angle_shot_jpg.jpg": {
+    "mtime": 1790309580.8786995,
+    "seen": 1790320111.345082,
+    "ast_hash": "06d9b69555c29d336afa38f88544f11a",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328666962-18_-_Desktop_png.png": {
+    "mtime": 1790309580.878828,
+    "seen": 1790320111.345082,
+    "ast_hash": "3ad88a0906efa28cddeb0e0c5cfa6cd8",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328669932-19_-_Outdoor_png.png": {
+    "mtime": 1790309580.8789732,
+    "seen": 1790320111.345083,
+    "ast_hash": "02d9e85339488bc3756e4e6adf72116c",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1788328713005-20_-_Celular_png.png": {
+    "mtime": 1790309580.8806024,
+    "seen": 1790320111.345084,
+    "ast_hash": "9020a7cabcbeb6922ca1ed56bb7c0b5a",
+    "semantic_hash": ""
+  },
+  "uploads/drive-1789105142541-36_-_Mudan_a_de_ilumina__o_png.png": {
+    "mtime": 1790309580.8815775,
+    "seen": 1790320111.345085,
+    "ast_hash": "a7017a9655d4539254e81275691eb0f7",
+    "semantic_hash": ""
+  }
+}
