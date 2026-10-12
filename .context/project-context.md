@@ -70,8 +70,9 @@ In development, Express mounts Vite middleware. In production, Vite builds the S
 - Firestore records do not make local uploads durable; object storage remains a separate migration.
 - Upload validation trusts client MIME metadata and needs content inspection before production use.
 - Routes and server bootstrap are concentrated in `server.ts`.
-- The AI model ID is hardcoded.
-- Gemini JSON is parsed and normalized but is not validated by a dedicated runtime schema.
+- The AI model ID defaults to configurable parameters with deterministic fallback.
+- Gemini JSON output is verified by dedicated runtime schema validation (`server/validation/aiAnalysisSchema.ts`).
+- Canonical package manager is `pnpm` with `pnpm-lock.yaml`.
 - Persistence and HTTP persistence tests exist; ESLint, CI, rate limiting, and per-user data isolation are absent. The allowlist grants access to the shared library.
 
 ## Roadmap Boundary
