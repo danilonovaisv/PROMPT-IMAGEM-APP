@@ -1,3 +1,7 @@
+---
+description: # Workflow: /spec-sync
+---
+
 # Workflow: /spec-sync
 
 ## Objetivo
@@ -29,7 +33,9 @@ Garantir alinhamento contínuo e bidirecional entre o código-fonte real (`serve
    - Refletir mudanças em `.context/project-context.md`.
 5. **Quality Gate**:
    - Executar:
+
      ```bash
      pnpm run lint
      ```
+
    - Validar que não há quebras de tipagem (`tsc --noEmit`).

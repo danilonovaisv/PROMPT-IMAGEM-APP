@@ -97,7 +97,9 @@ Todos os endpoints operam sob o prefixo `/api` e respondem em JSON com UTF-8:
 | Endpoint | Método | Descrição | Autenticação |
 | :--- | :--- | :--- | :--- |
 | `/api/health` | `GET` | Health check da aplicação e persistência | Pública |
-| `/api/analyze-prompt` | `POST` | Análise multimodal de texto/imagem via Gemini ou fallback | Bearer Token (Firebase Auth) |
+| `/api/auth/session` | `GET` | Recupera perfil da sessão atual autenticada | Bearer Token (Firebase Auth) |
+| `/api/auth/logout` | `POST` | Limpa cookies de sessão de uploads | Bearer Token |
+| `/api/analyze-prompt` | `POST` | Análise multimodal de texto/imagem via Gemini ou fallback | Bearer Token |
 | `/api/prompts` | `GET` | Lista todos os prompts persistidos com filtros opcionais | Bearer Token |
 | `/api/prompts/:id` | `GET` | Recupera detalhes de um prompt específico | Bearer Token |
 | `/api/prompts` | `POST` | Cria e persiste um novo `PromptItem` | Bearer Token |
@@ -105,10 +107,19 @@ Todos os endpoints operam sob o prefixo `/api` e respondem em JSON com UTF-8:
 | `/api/prompts/:id` | `DELETE`| Remove um `PromptItem` | Bearer Token |
 | `/api/prompts/:id/favorite` | `POST` | Alterna status de favorito | Bearer Token |
 | `/api/prompts/:id/copy` | `POST` | Incrementa o contador de uso (`usageCount`) | Bearer Token |
+| `/api/prompts/:id/duplicate` | `POST` | Duplica um prompt existente como novo rascunho | Bearer Token |
 | `/api/categories` | `GET` | Retorna categorias disponíveis | Bearer Token |
+| `/api/categories` | `POST` | Cria nova categoria | Bearer Token |
+| `/api/categories/:id` | `PUT` | Atualiza categoria existente | Bearer Token |
+| `/api/categories/:id` | `DELETE`| Remove uma categoria | Bearer Token |
 | `/api/upload` | `POST` | Upload de arquivo de imagem via multipart/form-data | Bearer Token |
 | `/api/upload-base64` | `POST` | Upload direto de imagem em payload base64 | Bearer Token |
+| `/api/uploads/:filename` | `GET` | Serve arquivo de imagem com verificação de auth cookie | Cookie Auth |
+| `/api/reset-data` | `POST` | Reinicia a base para os dados de seed padrão | Bearer Token |
+| `/api/workspace/config` | `GET` | Retorna configurações de integração com Google Workspace | Bearer Token |
 | `/api/workspace/import` | `POST` | Ingestão de arquivos Docs/Drive via token OAuth | Bearer Token + OAuth Token |
+| `/api/workspace/direct-text-import` | `POST` | Ingestão direta de blocos de texto/documentos | Bearer Token |
+| `/api/workspace/upload-batch-images`| `POST`| Ingestão em lote de imagens via multipart (até 50) | Bearer Token |
 
 ---
 
